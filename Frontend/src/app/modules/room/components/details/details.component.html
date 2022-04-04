@@ -1,0 +1,86 @@
+<div class="d-flex flex-column" *ngIf="room">
+    <div>
+        <button class="back-to-map-btn btn darkgray-text" (click)="onBackToMap()">
+            <svg class="back-icon"></svg>
+            <span class="align-middle ms-1">Map view</span>
+        </button>
+    </div>
+
+    <div class="d-flex flex-column mx-5">
+        <div class="d-flex mt-3 justify-content-between">
+            <div class="d-flex">
+                <div id="room-name" class="fw-bold blue-text mb-1 me-3">
+                    <span class="align-middle">{{ room.type | roomTypeToString }} {{ room.name }}</span> 
+                </div>
+                <div class="d-flex flex-row align-items-center">
+                    <svg class="dot me-1" height="15" width="15"><circle cx="7.5" cy="7.5" r="6" attr.fill="{{roomStatusColor()}}" /></svg>
+                    <span class="status-text" [style.color]="roomStatusColor()">{{room.status | roomStatusToString}}</span>
+                </div>
+            </div>
+            <svg class="menu-icon" (click)="toggleMenu()"></svg>
+        </div>
+        
+        <div *ngIf="doctor" class="fw-bold darkgray-text subhead mb-3 mt-2"><img id="doctor-icon" src="../../../../assets/icons/doctor.jpg" alt="D"><span class="align-middle ms-2">{{doctor.name}} {{doctor.surname}}</span></div>
+        <p class="darkgray-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi sapiente facilis fugit, reprehenderit tempora, soluta illum accusamus perferendis enim quae suscipit quia nihil culpa labore rem dolore dicta quam eaque.</p>
+        
+        <div class="d-flex flex-row justify-content-between mb-1">
+            <h3 class="fw-bold blue-text subhead m-0 p-2 ps-0">Room equipment</h3>
+        </div>    
+    </div>
+
+    <!-- TODO: Add div with scroller -->
+    <div class="d-flex flex-column mx-5">
+        <div class="d-flex flex-row card rounded justify-content-between p-3 mb-3" *ngFor="let e of room.equipment">
+            <div class="d-flex flex-column">
+                <span class="blue-text">{{ e.equipmentItemName }}</span>
+                <span class="darkgray-text">{{ e.equipmentItemDescription }}</span>
+            </div>
+            <div class="d-flex flex-column justify-content-center darkgray-text">
+                <span>Qty</span>
+                <span class="align-self-end">{{ e.quantity }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="backdrop d-flex align-items-center justify-content-center" *ngIf="roomInfoFormVisible">
+        <div class="form-container d-flex flex-column align-items-center">
+            <span class="title mt-3 mb-2 fw-bold">Edit room info</span>
+            <room-details-edit class="w-100 room-form" [selectedRoom]='room' (notifyHideRoomInfo)="onNotifyHideRoomInfo()"></room-details-edit>
+        </div>
+    </div>
+</div>
+<div class="overlay d-flex justify-content-end w-100" [ngClass]="{'hidden-overlay' : !menuVisible}">
+    <div class="d-flex flex-column align-items-center w-0" [ngClass]="{'menu-container' : menuVisible}">
+        <svg class="close-icon" (click)="toggleMenu()"></svg>
+        <div [ngClass]="{'hidden-overlay' : !menuVisible}" class="d-flex flex-column">
+            <span class="menu-title">Choose action</span>
+            <div class="nav-items-menu">
+                <div class="nav-item-menu" (click)="showRoomInfoForm();toggleMenu()">
+                    <svg class="edit-room-info-icon me-2"></svg>
+                    <span>Edit room info</span>
+                </div>
+                <div class="nav-item-menu" (click)="showMakeTransfer()">
+                    <svg class="make-transfer-icon me-2"></svg>
+                    <span>Make transfer</span>
+                </div>
+                <div class="nav-item-menu" (click)="showRoomRenovation()">
+                    <svg class="renovate-room-icon me-2"></svg>
+                    <span>Renovate room</span>
+                </div>
+                <div class="nav-item-menu" (click)="showRoomSchedule()">
+                    <svg class="room-schedule-icon me-2"></svg>
+                    <span>Room schedule</span>
+                </div>
+                <div class="nav-item-menu" (click)="showManageDoctor()">
+                    <svg class="manage-doctor-icon me-2"></svg>
+                    <span>Manage doctor</span>
+                </div>
+                <div class="nav-item-menu" (click)="showDoctorWorkload()">
+                    <svg class="doctor-workload-icon me-2"></svg>
+                    <span>Doctor workload</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

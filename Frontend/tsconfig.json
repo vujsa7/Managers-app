@@ -5,7 +5,7 @@
     "baseUrl": "./",
     "paths":{
       "@app/*" : ["src/app/*"],
-      "@hospital-map/*" : ["src/app/hospital-map/*"]
+      "@graphical-editors/*" : ["src/app/graphical-editors/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -23,7 +23,9 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

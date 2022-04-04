@@ -14,6 +14,7 @@ $delete: '<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="htt
 $arrow-up: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.29 8.70998L6.69997 13.3C6.30997 13.69 6.30997 14.32 6.69997 14.71C7.08997 15.1 7.71997 15.1 8.10997 14.71L12 10.83L15.88 14.71C16.27 15.1 16.9 15.1 17.29 14.71C17.68 14.32 17.68 13.69 17.29 13.3L12.7 8.70998C12.32 8.31998 11.68 8.31998 11.29 8.70998Z" fill="#A2A2A2"/></svg>';
 $arrow-down: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.71 15.29L17.3 10.7C17.69 10.31 17.69 9.68002 17.3 9.29002C16.91 8.90002 16.28 8.90002 15.89 9.29002L12 13.17L8.12003 9.29002C7.73003 8.90002 7.10003 8.90002 6.71003 9.29002C6.32003 9.68002 6.32003 10.31 6.71003 10.7L11.3 15.29C11.68 15.68 12.32 15.68 12.71 15.29Z" fill="#A2A2A2"/></svg>';
 
+
 @function svg-url($svg) {
     @if not str-index($svg, xmlns) {
       $svg: str-replace($svg, "<svg", '<svg xmlns="http://www.w3.org/2000/svg"');

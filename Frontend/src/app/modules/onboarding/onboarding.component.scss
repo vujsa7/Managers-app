@@ -1,0 +1,62 @@
+@import "src/styles/main.scss";
+
+.home-component{
+    height: 100vh;
+    position: relative;
+}
+
+    .homepage-img-container{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+        .homepage-img{
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .padding-container{
+        padding: 0 $grid-margin-width;
+    }
+
+        .logo-container{
+            padding-top: 223px;
+
+            p, button {
+                font-size: 1.25rem;
+            }
+
+            span {
+                font-size: 1.953rem;
+            }
+        }
+
+            .logo-container img {
+                width: 100px;
+            }
+
+        p {
+            font-size: 2.441rem;
+        }
+
+        button img {
+            width: 24px;
+        }
+
+        .content-container{
+            margin-top: 82px;
+        }

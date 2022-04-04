@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { OnboardingComponent } from './modules/onboarding/onboarding.component';
 
 const routes: Routes = [
-  { path: 'hospital-map', loadChildren: () => import('./hospital-map/hospital-map.module').then(m => m.HospitalMapModule) }, 
-  { path: 'integration', loadChildren: () => import('./integration/integration.module').then(m => m.IntegrationModule) },
-  { path: '', component: HomeComponent },
+  { path: 'map', loadChildren: () => import('./modules/map/map.module').then(m => m.MapModule) }, 
+  { path: 'rooms', loadChildren: () => import('./modules/room/room.module').then(m => m.RoomModule) }, 
+  { path: 'management', loadChildren: () => import('./modules/management/management.module').then(m => m.ManagementModule) }, 
+  { path: 'equipment', loadChildren: () => import('./modules/equipment/equipment.module').then(m => m.EquipmentModule) }, 
+  { path: '', component: OnboardingComponent },
   { path: '**', redirectTo: '' }
 ];
 

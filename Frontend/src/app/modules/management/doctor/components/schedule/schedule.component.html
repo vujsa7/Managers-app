@@ -1,0 +1,44 @@
+<app-info-dialog [hidden]="!isInfoDialogVisible" [title]="infoDialogTitle" [message]="infoDialogMessage" [buttonText]="infoDialogButtonText" (notify)="onInfoDialogNotify($event)"></app-info-dialog>
+<div class="overlay d-flex align-items-center justify-content-center" *ngIf="deleteShiftDialogVisible">
+    <app-optional-dialog [title]="title" [description]="description" cancelText="Cancel" confirmText="Yes"
+    (notifyCancelButton)="onNotifyCancelButton()" (notifyConfirmButton)="onNotifyConfirmButton()" ></app-optional-dialog>
+</div>
+<div class="overlay d-flex align-items-center justify-content-center" *ngIf="deleteOnCallShiftDialogVisible">
+    <app-optional-dialog [title]="title" [description]="description" cancelText="Cancel" confirmText="Yes"
+    (notifyCancelButton)="onNotifyCancelOnCallShiftButton()" (notifyConfirmButton)="onNotifyConfirmOnCallShiftButton()" ></app-optional-dialog>
+</div>
+<div id="manage-doctor" class="d-flex flex-column">
+    <div class="back-to-room-details-btn" (click)="onBack()">
+        <svg class="back-icon"></svg>
+        <span *ngIf="roomId != ''" class="align-middle ms-1">Room details</span>
+        <span *ngIf="roomId == ''" class="align-middle ms-1">Map view</span>
+    </div>
+    <div class="toolbar d-flex align-items-center justify-content-between">
+        <h2 *ngIf="doctor">Manage Dr. {{doctor.name}} {{doctor.surname}}</h2>
+        <div class="d-flex">
+            <div class="assign-holiday-btn">
+                <svg class="holiday-icon"></svg>
+                <span class="align-middle ms-1 button-text fw-bold" (click)="toggleAssignHolidayDialog()">Assign holiday</span>
+            </div>
+            <div class="assign-on-call-shift-btn">
+                <svg class="on-call-shift-icon"></svg>
+                <span class="align-middle ms-1 button-text fw-bold" (click)="toggleAssignOnCallShiftDialog()">Assign on-call shift</span>
+            </div>
+            <div class="assign-shift-btn">
+                <svg class="shift-icon"></svg>
+                <span class="align-middle ms-1 button-text fw-bold" (click)="toggleAssignShiftDialog()">Assign shift</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <doctor-schedule-calendar [shifts]="shifts" [onCallShifts]="onCallShifts" [holidays]="holidays" [newShift]="newShift" (notifyFromDoctorScheduleCalendar)="onNotifyFromDoctorScheduleCalendar($event)"></doctor-schedule-calendar>
+</div>
+<div *ngIf="assignShiftDialogVisible" class="overlay d-flex justify-content-center align-items-center w-100">
+    <app-assign-shift-dialog [doctorsShifts]="shifts" [doctorId]="doctorId" [isVisible]="assignShiftDialogVisible" (notifyFromAssignShiftDialog)="onNotifyFromAssignShiftDialog($event)"></app-assign-shift-dialog>
+</div>
+<div *ngIf="assignHolidayDialogVisible" class="overlay d-flex justify-content-center align-items-center w-100">
+    <app-assign-holiday-dialog [doctorsHolidays]="holidays" [doctorId]="doctorId" [isVisible]="assignHolidayDialogVisible" [update]="update" [holidayId]="holidayId" (notifyCloseHolidayDialog)="onNotifyCloseHolidayDialog()" (notifyReload)="reload()"></app-assign-holiday-dialog>
+</div>
+<div *ngIf="assignOnCallShiftDialogVisible" class="overlay d-flex justify-content-center align-items-center w-100">
+    <app-assign-on-call-shift-dialog [doctorsOnCallShifts]="onCallShifts" [doctorId]="doctorId" [isVisible]="assignOnCallShiftDialogVisible" (notifyFromAssignOnCallShiftDialog)="onNotifyFromAssignOnCallShiftDialog($event)"></app-assign-on-call-shift-dialog>
+</div>
