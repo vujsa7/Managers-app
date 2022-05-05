@@ -5,7 +5,6 @@
     "baseUrl": "./",
     "paths":{
       "@app/*" : ["src/app/*"],
-      "@graphical-editors/*" : ["src/app/graphical-editors/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

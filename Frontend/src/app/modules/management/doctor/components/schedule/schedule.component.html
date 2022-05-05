@@ -8,10 +8,9 @@
     (notifyCancelButton)="onNotifyCancelOnCallShiftButton()" (notifyConfirmButton)="onNotifyConfirmOnCallShiftButton()" ></app-optional-dialog>
 </div>
 <div id="manage-doctor" class="d-flex flex-column">
-    <div class="back-to-room-details-btn" (click)="onBack()">
+    <div class="back-to-room-details-btn" routerLink="/map/building-plan">
         <svg class="back-icon"></svg>
-        <span *ngIf="roomId != ''" class="align-middle ms-1">Room details</span>
-        <span *ngIf="roomId == ''" class="align-middle ms-1">Map view</span>
+        <span class="align-middle ms-1">Map view</span>
     </div>
     <div class="toolbar d-flex align-items-center justify-content-between">
         <h2 *ngIf="doctor">Manage Dr. {{doctor.name}} {{doctor.surname}}</h2>

@@ -1,11 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { FloorPlanComponent } from "./components/floor-plan/floor-plan.component";
-import { MapComponent } from "./map.component";
 
 const routes: Routes = [
-    { path: '', component: MapComponent },
-    { path: 'floor-plan', component: FloorPlanComponent },
+    { path: 'building-plan', loadChildren: () => import('./building-plan/building-plan.module').then(m => m.BuildingPlanModule) }, 
+    { path: 'floor-plan', loadChildren: () => import('./floor-plan/floor-plan.module').then(m => m.FloorPlanModule) },
+    { path: '**', redirectTo: 'building-plan' },
 ];
 
 @NgModule({

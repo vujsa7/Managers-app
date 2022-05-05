@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { NgbDate, NgbDatepickerConfig, NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerConfig, NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { OnCallShift } from '../../models/on-call-shift.model';
-import { ShiftService } from '../../../services/shift.service';
+import { DoctorManagementService } from '../../services/doctor-management.service';
 
 @Component({
   selector: 'app-assign-on-call-shift-dialog',
@@ -21,7 +21,7 @@ export class AssignOnCallShiftDialogComponent implements OnInit, OnChanges {
   
   @Output() notifyFromAssignOnCallShiftDialog: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(config: NgbDatepickerConfig, private shiftService: ShiftService) { 
+  constructor(config: NgbDatepickerConfig, private doctorManagementService: DoctorManagementService) { 
     const current = new Date();
     config.minDate = { year: current.getFullYear(), month: current.getMonth() + 1, day: current.getDate()+2 };
   }
@@ -42,7 +42,7 @@ export class AssignOnCallShiftDialogComponent implements OnInit, OnChanges {
   assignOnCallShift(): void{
     let startDate = new Date(this.fromDate.year, this.fromDate.month -1, this.fromDate.day, this.startTime.hour+1, this.startTime.minute, this.startTime.second);
     let onCallShift = {start: startDate, doctorId: this.doctorId};
-    this.shiftService.postOnCallShift(onCallShift).subscribe(
+    this.doctorManagementService.postOnCallShift(onCallShift).subscribe(
       data => {
         this.notifyFromAssignOnCallShiftDialog.emit("assigned");
       }

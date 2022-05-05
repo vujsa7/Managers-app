@@ -1,4 +1,5 @@
-import { RoomStatus, RoomType } from "@app/shared/models/room.model";
+import { RoomStatus } from "@app/shared/models/room-status.enum";
+import { RoomType } from "@app/shared/models/room-type.enum";
 
 export class NewRoomInfo{
     public roomName: string; 

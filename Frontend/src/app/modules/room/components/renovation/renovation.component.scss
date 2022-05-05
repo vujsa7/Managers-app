@@ -2,6 +2,8 @@
 
 .room-renovation{
     overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
 }
 
     .renovation-side-bar{

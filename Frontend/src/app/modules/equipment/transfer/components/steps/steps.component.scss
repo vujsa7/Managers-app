@@ -1,0 +1,23 @@
+@import 'src/styles/main.scss';
+
+.step{
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+    .location-icon{
+        margin: 0 5px;
+        @include icon;
+        @include background-svg($location-icon);
+    }
+
+    .checkmark-icon{
+        margin: 0 5px;
+        @include icon;
+        @include background-svg($checkmark-icon);
+    }
+
+    .number-icon{
+        margin: 0 5px;
+    }

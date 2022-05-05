@@ -1,75 +1,41 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
-import { EquipmentTransferEvent } from '../../models/equipment-transfer-event.model';
-import { RoomEquipment } from '../../models/room-equipment.model';
+import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
+import { EquipmentWithRoom } from '../../models/equipment-with-room';
 import { EquipmentTransferService } from '../../services/equipment-transfer.service';
-import { EquipmentService } from '../../services/equipment.service';
 
 @Component({
-  selector: 'app-select-equipment',
+  selector: 'tr-select-equipment',
   templateUrl: './select-equipment.component.html',
   styleUrls: ['./select-equipment.component.scss']
 })
 export class SelectEquipmentComponent implements OnInit {
 
-  equipment: RoomEquipment[] = [];
+  equipment: EquipmentWithRoom[] = [];
   isEquipmentSelected: boolean = false;
-  filteredEquipment: RoomEquipment[] = [];
+  filteredEquipment: EquipmentWithRoom[] = [];
   isSelectedEquipment: boolean = false;
   isQuickTransferVisible: boolean = false;
   searchInput: string = "";
   searchFilter: string = "";
-  scrollBoxTitle: string = "Select equipment for transfer";
   isSearchActive: boolean = false;
-  selectedEquipment!: RoomEquipment;
+  selectedEquipment!: EquipmentWithRoom;
   selectedEquipmentId: number = -1;
   mostRecentlyUsedSourceRoomId: number = -1;
   mostRecentlyUsedEquipmentId: number = -1;
   @Input() equipmentTransfer!: EquipmentTransfer;
   @Output() confirmQuantityEvent = new EventEmitter();
   @Output() equipmentTransferChanged = new EventEmitter();
-  transferEvents: EquipmentTransferEvent[] = [];
 
-  constructor(private equipmentService: EquipmentService, private equipmentTransferService: EquipmentTransferService) { }
+  constructor(private equipmentTransferService: EquipmentTransferService) { }
 
   ngOnInit(): void {
-    this.equipmentService.getEquipment().subscribe(
+    this.equipmentTransferService.getEquipment().subscribe(
       data => {
         this.equipment = data;
         this.filteredEquipment = data;
       }
-    )
-    this.equipmentTransferService.getEquipmentTransferEvents().subscribe(
-      data => {
-        this.transferEvents = data;
-        this.findTheMostRecentEvent();
-      }
-    )
+    );
   }
-
-  findTheMostRecentEvent(){
-    let mostRecentEquipmentTransfer: EquipmentTransferEvent = this.transferEvents[this.transferEvents.length - 1];
-    this.mostRecentlyUsedSourceRoomId = mostRecentEquipmentTransfer.sourceRoomId;
-    this.mostRecentlyUsedEquipmentId = mostRecentEquipmentTransfer.equipmentId;
-  }
-
-
-  quickTransferSearchBySourceRoom() : void {
-    this.scrollBoxTitle = "Most recently used source room's equipments";
-
-    let equipment = this.equipment;
-    equipment = equipment.filter(param => param.roomId === this.mostRecentlyUsedSourceRoomId);
-    this.filteredEquipment = equipment;
-  }
-  // TODO: QuickTransfer with Equipment is not finished yet
-  quickTransferSearchByEquipment() : void {
-    this.scrollBoxTitle = "Most recently transfered equipment in different rooms";
-
-    let equipment = this.equipment;
-    equipment = equipment.filter(param => param.equipmentItemId === this.mostRecentlyUsedEquipmentId);
-    this.filteredEquipment = equipment;
-  }
-
 
   ngOnChanges(changes: SimpleChanges) {
     if(changes['isEquipmentSelected']){
@@ -80,7 +46,6 @@ export class SelectEquipmentComponent implements OnInit {
   search() : void{
     if(this.searchInput != ""){
       this.searchFilter = this.searchInput.toLowerCase();
-      this.scrollBoxTitle = "Search results";
       this.isSearchActive = true;
 
       let equipment = this.equipment;
@@ -95,9 +60,9 @@ export class SelectEquipmentComponent implements OnInit {
     this.filteredEquipment = this.equipment;
   }
 
-  onNotifySelectedEquipment(selectedEquipment: RoomEquipment): void{
-    this.selectedEquipment = selectedEquipment;
+  onSelectedEquipment(selectedEquipment: EquipmentWithRoom): void{
     this.selectedEquipmentId = selectedEquipment.id;
+    this.selectedEquipment = selectedEquipment;
     this.equipmentTransfer.sourceRoomId = selectedEquipment.roomId;
     this.equipmentTransfer.equipmentId = selectedEquipment.id;
     this.equipmentTransfer.quantity = 1;

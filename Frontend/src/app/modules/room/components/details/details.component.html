@@ -1,6 +1,6 @@
 <div class="d-flex flex-column" *ngIf="room">
     <div>
-        <button class="back-to-map-btn btn darkgray-text" (click)="onBackToMap()">
+        <button class="back-to-map-btn btn darkgray-text" [routerLink]="['/map/floor-plan?buildingId', room.buildingId]">
             <svg class="back-icon"></svg>
             <span class="align-middle ms-1">Map view</span>
         </button>
@@ -55,27 +55,27 @@
         <div [ngClass]="{'hidden-overlay' : !menuVisible}" class="d-flex flex-column">
             <span class="menu-title">Choose action</span>
             <div class="nav-items-menu">
-                <div class="nav-item-menu" (click)="showRoomInfoForm();toggleMenu()">
+                <div class="nav-item-menu" (click)="showRoomInfoForm(); toggleMenu()">
                     <svg class="edit-room-info-icon me-2"></svg>
                     <span>Edit room info</span>
                 </div>
-                <div class="nav-item-menu" (click)="showMakeTransfer()">
+                <div class="nav-item-menu" routerLink="/equipment/transfer">
                     <svg class="make-transfer-icon me-2"></svg>
                     <span>Make transfer</span>
                 </div>
-                <div class="nav-item-menu" (click)="showRoomRenovation()">
+                <div class="nav-item-menu" [routerLink]="['/rooms/renovation/', room.id]">
                     <svg class="renovate-room-icon me-2"></svg>
                     <span>Renovate room</span>
                 </div>
-                <div class="nav-item-menu" (click)="showRoomSchedule()">
+                <div class="nav-item-menu" [routerLink]="['/rooms/schedule/', room.id]">
                     <svg class="room-schedule-icon me-2"></svg>
                     <span>Room schedule</span>
                 </div>
-                <div class="nav-item-menu" (click)="showManageDoctor()">
+                <div class="nav-item-menu" [routerLink]="doctor != null ? ['/management/doctors/', doctor.id] : []">
                     <svg class="manage-doctor-icon me-2"></svg>
                     <span>Manage doctor</span>
                 </div>
-                <div class="nav-item-menu" (click)="showDoctorWorkload()">
+                <div class="nav-item-menu" [routerLink]="doctor != null ? ['/management/doctors/workload/', doctor.id] : []">
                     <svg class="doctor-workload-icon me-2"></svg>
                     <span>Doctor workload</span>
                 </div>

@@ -8,8 +8,6 @@ import { AssignShiftDialogComponent } from './components/assign-shift-dialog/ass
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { ScheduleCalendarComponent } from './components/schedule-calendar/schedule-calendarcomponent';
 import { SharedModule } from '@app/shared/shared.module';
-import { DoctorService } from './services/doctor.service';
-import { HolidayService } from './services/holiday.service';
 import { WorkloadComponent } from './components/workload/workload.component';
 
 @NgModule({
@@ -27,9 +25,7 @@ import { WorkloadComponent } from './components/workload/workload.component';
     SharedModule,
   ],
   providers:[
-    DatePipe,
-    DoctorService,
-    HolidayService
+    DatePipe
   ]
 })
 export class DoctorModule { }

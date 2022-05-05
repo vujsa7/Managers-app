@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { RoomStatus, RoomType } from '@app/shared/models/room.model';
-import { RoomService } from '../../services/room.service';
+import { RoomStatus } from '@app/shared/models/room-status.enum';
+import { RoomType } from '@app/shared/models/room-type.enum';
+import { RoomDetailsService } from '../../services/room-details.service';
 
 @Component({
   selector: 'room-details-edit',
@@ -27,7 +28,7 @@ export class DetailsEditComponent {
     RoomType.Stairs,
     RoomType.Storage
   ]
-  constructor(private roomService: RoomService) { }
+  constructor(private roomDetailsService: RoomDetailsService) { }
 
   @Output() notifyHideRoomInfo: EventEmitter<any> = new EventEmitter<any>();
 
@@ -36,7 +37,7 @@ export class DetailsEditComponent {
   }
 
   updateRoomInfo(): void{
-    this.roomService.updateRoom(this.selectedRoom).subscribe();
+    this.roomDetailsService.updateRoom(this.selectedRoom).subscribe();
     this.hideRoomInfoForm();
   }
 

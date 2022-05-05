@@ -4,8 +4,8 @@ import { ShiftComponent } from './components/shift/shift.component';
 import { CreateShiftDialogComponent } from './components/create-shift-dialog/create-shift-dialog.component';
 import { UpdateShiftDialogComponent } from './components/update-shift-dialog/update-shift-dialog.component';
 import { SharedModule } from '@app/shared/shared.module';
-import { ShiftService } from '../services/shift.service';
 import { ShiftRoutingModule } from './shift-routing.module';
+import { ShiftCRUDService } from './services/shift-crud.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,6 @@ import { ShiftRoutingModule } from './shift-routing.module';
     SharedModule,
     ShiftRoutingModule
   ],
-  providers: [ShiftService]
+  providers: [ShiftCRUDService]
 })
 export class ShiftModule { }

@@ -38,18 +38,16 @@
     .select-view{
         background-color: #fff;
         position: relative;
-        height: 69vh; 
+        overflow: hidden;
     }
+
 
         .searched-elements{
             display: grid;
             grid-gap: 20px;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            grid-template-rows: minmax(100px, 102px);
-            padding: 10px 10px 0 5px;
+            padding: 10px 10px 20px 5px;
             width: 100%;
-            height: 90%; // before quickTransfer: 90%
-            @include scrollbar;
             transition: all 0.4s ease;
         }
 
@@ -59,18 +57,18 @@
         }
 
         .selected-equipment{
+            display: flex;
+            flex-direction: column;
             position: absolute;
-            top: 1000px;
-            right: 0;
+            top: 10px;
+            right: 2px;
+            transform: translate(130%, 0);
             width: 23.25%;
-            transition: all 0.4s ease-out;
+            transition: all 0.4s ease;
         }
 
         .selected-equipment-active{
-            display: flex;
-            flex-direction: column;
-            top: 0;
-            transition: top 0.4s ease-out;
+            transform: translate(0, 0);
         }
 
             .selected-equipment-card{
@@ -109,10 +107,13 @@
                 }
 
                 .quantity-field{
-                    border: none;
+                    text-align: center;
+                    border: none !important;
+                    box-shadow: none !important;
                     width: 45px;
                     margin-left: 4px;
                     margin-right: 4px;
+                    @include noselect;
                 }
 
                 input::-webkit-inner-spin-button {

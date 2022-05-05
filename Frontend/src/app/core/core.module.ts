@@ -1,13 +1,15 @@
 import { CommonModule } from "@angular/common";
 import { NgModule, Optional, SkipSelf } from "@angular/core";
 import { throwIfAlreadyLoaded } from "./guards/import.guard";
-import { D3Service } from "./services/d3.service";
+import { BaseHttpService } from "./services/base-http.service";
 
 @NgModule({
     imports: [
         CommonModule,
     ],
-    providers: [D3Service]
+    providers: [
+        BaseHttpService
+    ]
 })
 
 export class CoreModule {

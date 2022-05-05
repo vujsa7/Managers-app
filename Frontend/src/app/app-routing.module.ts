@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'rooms', loadChildren: () => import('./modules/room/room.module').then(m => m.RoomModule) }, 
   { path: 'management', loadChildren: () => import('./modules/management/management.module').then(m => m.ManagementModule) }, 
   { path: 'equipment', loadChildren: () => import('./modules/equipment/equipment.module').then(m => m.EquipmentModule) }, 
-  { path: '', component: OnboardingComponent },
+  { path: '', loadChildren: () => import('./modules/onboarding/onboarding.module').then(m => m.OnboardingModule) },
   { path: '**', redirectTo: '' }
 ];
 

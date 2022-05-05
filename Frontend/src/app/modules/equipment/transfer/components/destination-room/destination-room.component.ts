@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RoomService } from '@app/core/services/room.service';
-import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
-import { Room } from '@app/shared/models/room.model';
+import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
 import { RoomTypeToStringPipe } from '@app/shared/pipes/room-type-to-string.pipe';
+import { Room } from '../../models/room';
+import { EquipmentTransferService } from '../../services/equipment-transfer.service';
 
 @Component({
-  selector: 'app-destination-room',
+  selector: 'tr-destination-room',
   templateUrl: './destination-room.component.html',
   styleUrls: ['./destination-room.component.scss'],
   providers: [RoomTypeToStringPipe]
@@ -22,10 +22,10 @@ export class DestinationRoomComponent implements OnInit {
   @Input() equipmentTransfer!: EquipmentTransfer;
   @Output() selectDestinationRoomEvent = new EventEmitter();
 
-  constructor(private roomService: RoomService, private roomTypeToStringPipe: RoomTypeToStringPipe) { }
+  constructor(private equipmentTransferService: EquipmentTransferService, private roomTypeToStringPipe: RoomTypeToStringPipe) { }
 
   ngOnInit(): void {
-    this.roomService.getRooms(1).subscribe(
+    this.equipmentTransferService.getDestinationRooms(1).subscribe(
       data => {
         for (const room of data){
           if (room.id != this.equipmentTransfer.sourceRoomId){
@@ -60,9 +60,9 @@ export class DestinationRoomComponent implements OnInit {
     this.filteredRooms = this.rooms.filter(x => {return x.id != this.equipmentTransfer.sourceRoomId;})
   }
 
-  selectDestinationRoom(id: number) : void{
-    this.equipmentTransfer.destinationRoomId = id;
-    this.selectedRoomId = id;
+  onDestinationRoomSelected(roomId: number){
+    this.equipmentTransfer.destinationRoomId = roomId;
+    this.selectedRoomId = roomId;
     this.selectDestinationRoomEvent.emit();
   }
 

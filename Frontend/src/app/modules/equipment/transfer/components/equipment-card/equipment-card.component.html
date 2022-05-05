@@ -1,0 +1,7 @@
+<div class="card d-flex flex-column" [style.background]="isCardSelected ? '#214975' : '#fff'" (click)="notifySelectedEquipment()">
+    <span class="card-title" [style.color]="isCardSelected ? '#fff' : '#214975'">{{equipment.equipmentItemName}}</span>
+    <div class="d-flex flex-column align-items-start">
+        <span class="small-text mb-1" [style.color]="isCardSelected ? '#fff' : '#a2a2a2'">{{equipment.roomType | roomTypeToString}} {{equipment.roomName}}</span>
+        <span class="small-text" [style.color]="isCardSelected ? '#fff' : '#a2a2a2'">Quantity: {{equipment.quantity}} • Reserved: {{equipment.reservedQuantity}}</span>
+    </div>
+</div>

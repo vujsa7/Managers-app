@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Shift } from '@app/modules/management/models/shift.model';
 import { ShiftService } from '@app/modules/management/services/shift.service';
+import { ShiftCRUDService } from '../../services/shift-crud.service';
 
 @Component({
   selector: 'app-shift',
@@ -17,7 +17,7 @@ export class ShiftComponent implements OnInit {
   createShiftDialogVisible: boolean = false;
   updateShiftDialogVisible: boolean = false;
 
-  constructor(private shiftService: ShiftService, private router: Router) { }
+  constructor(private shiftCRUDService: ShiftCRUDService, private shiftService: ShiftService) {}
 
   ngOnInit(): void {
 
@@ -38,12 +38,9 @@ export class ShiftComponent implements OnInit {
   }
 
   onNotifyConfirmButton(){
-    this.shiftService.deleteShift(this.selectedShift).subscribe(
+    this.shiftCRUDService.deleteShift(this.selectedShift).subscribe(
       data => {
-        let currentUrl = this.router.url;
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate([currentUrl]);
+        window.location.reload();
       }
     );
     this.showOptionalDialog = false;
@@ -63,15 +60,8 @@ export class ShiftComponent implements OnInit {
 
   onNotifyCloseDialog(message: string): void{
     if(message == "close"){
-      let currentUrl = this.router.url;
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.onSameUrlNavigation = 'reload';
-      this.router.navigate([currentUrl]);
+      window.location.reload();
     }
-  }
-
-  onBack(): void{
-    this.router.navigate(['/map'])
   }
 
 }

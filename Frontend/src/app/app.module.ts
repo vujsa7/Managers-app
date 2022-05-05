@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OnboardingComponent } from './modules/onboarding/onboarding.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from './core/core.module';
@@ -13,6 +12,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import {Injector} from '@angular/core';
+import { setAppInjector } from './core/guards/injector.guard';
 
 
 FullCalendarModule.registerPlugins([
@@ -23,8 +24,7 @@ FullCalendarModule.registerPlugins([
 
 @NgModule({
   declarations: [
-    AppComponent,
-    OnboardingComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +33,12 @@ FullCalendarModule.registerPlugins([
     BrowserAnimationsModule,
     NgbModule,
     SharedModule,
+    CoreModule
   ],
-  providers: [CoreModule],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(injector: Injector) {
+    setAppInjector(injector);
+  }
+}

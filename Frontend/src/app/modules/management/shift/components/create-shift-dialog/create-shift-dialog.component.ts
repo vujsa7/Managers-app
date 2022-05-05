@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ShiftService } from '@app/modules/management/services/shift.service';
 import {NgbCalendar, NgbDate, NgbDateStruct, NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
+import { ShiftCRUDService } from '../../services/shift-crud.service';
 
 @Component({
   selector: 'app-create-shift-dialog',
@@ -18,7 +18,7 @@ export class CreateShiftDialogComponent implements OnInit {
   shiftName: string = "";
   minDate!:NgbDate;
   
-  constructor(config: NgbTimepickerConfig, private shiftService: ShiftService, private calendar: NgbCalendar) { 
+  constructor(config: NgbTimepickerConfig, private shiftCRUDService: ShiftCRUDService, private calendar: NgbCalendar) { 
     config.spinners = false;
     this.minDate = this.fromDate = calendar.getToday();
   }
@@ -33,7 +33,7 @@ export class CreateShiftDialogComponent implements OnInit {
     let startTime = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day, this.startTime.hour + 1, this.startTime.minute);
     let endTime = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day, this.endTime.hour + 1, this.endTime.minute);
     let shift = {name: this.shiftName, start: startTime, end: endTime};
-    this.shiftService.postShift(shift).subscribe(
+    this.shiftCRUDService.postShift(shift).subscribe(
       data => {
         this.notifyCloseDialog.emit("close");
       }

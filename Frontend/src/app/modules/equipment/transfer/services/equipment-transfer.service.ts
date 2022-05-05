@@ -1,25 +1,33 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
+import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
+import { BaseHttpService } from '@app/core/services/base-http.service';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { EquipmentTransferEvent } from '../models/equipment-transfer-event.model';
+import { Room } from '../models/room';
 
 @Injectable({
   providedIn: 'any'
 })
-export class EquipmentTransferService {
-  private baseUrl: string = environment.baseUrlHospital;
+export class EquipmentTransferService extends BaseHttpService{
 
-  constructor(private http: HttpClient) { }
+  getEquipment(): Observable<any> {
+    return this.http.get(this.baseUrl + 'equipment');
+  }
 
-  getAvailableTimeSlots(equipmentTransfer : EquipmentTransfer, transferStartDate: string, transferEndDate: string): Observable<Date[]> {
+  getAvailableTimeSlots(start: string, end: string, duration: string, firstRoomId: number, secondRoomId?: number): Observable<Date[]> {
     let params = new HttpParams()
-    .set('start', transferStartDate)
-    .set('end', transferEndDate)
-    .set('duration', equipmentTransfer.transferDuration)
-    .set('srcRoomId', equipmentTransfer.sourceRoomId)
-    .set('dstRoomId', equipmentTransfer.destinationRoomId);
+        .set('start', start)
+        .set('end', end)
+        .set('duration', duration)
+        .set('firstRoomId', firstRoomId);
+    if(secondRoomId){
+        params = new HttpParams()
+        .set('start', start)
+        .set('end', end)
+        .set('duration', duration)
+        .set('firstRoomId', firstRoomId)
+        .set('secondRoomId', secondRoomId);
+    }
     return this.http.get<Date[]>(this.baseUrl + "availableTimeSlots", {params});
   }
   
@@ -27,14 +35,7 @@ export class EquipmentTransferService {
     return this.http.post<EquipmentTransfer>(this.baseUrl + 'transfers', equipmentTransfer);
   }
 
-  getTransfersForRoom(roomId: number) : Observable<EquipmentTransfer[]>{
-    return this.http.get<EquipmentTransfer[]>(this.baseUrl + 'transfers/room/' + roomId);
-  }
-
-  getEquipmentTransferEvents() : Observable<EquipmentTransferEvent[]>{
-    return this.http.get<EquipmentTransfer[]>(this.baseUrl + 'transfers/events/');
-  }
-
+  // TODO: put in schedule calendar service
   deleteEquipmentTransfer(equipmentTransfer: EquipmentTransfer): Observable<EquipmentTransfer>{
     const options = {
       headers: new HttpHeaders({
@@ -42,7 +43,12 @@ export class EquipmentTransferService {
       }),
       body: 
       equipmentTransfer    
-    } 
+    }
     return this.http.delete<EquipmentTransfer>(this.baseUrl + 'transfers', options);
+  }
+
+  getDestinationRooms(buildingId: number): Observable<Room[]> {
+    let params = new HttpParams().set('buildingId', buildingId)
+    return this.http.get<Room[]>(this.baseUrl + 'rooms', { params: params });
   }
 }

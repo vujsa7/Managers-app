@@ -1,0 +1,7 @@
+<div class="card d-flex flex-column" id="card-{{room.id}}" [style.background]="isCardSelected ? '#214975' : '#fff'" (click)="notifyDestinationRoomSelected()">
+    <span class="card-title" [style.color]="isCardSelected ? '#fff' : '#214975'">{{room.type | roomTypeToString}} {{room.name}}</span>
+    <div class="d-flex flex-row justify-content-between">
+        <span [style.color]="isCardSelected ? '#fff' : '#a2a2a2'" class="floor-text">{{room.buildingId | buildingName}}</span>
+        <span [style.color]="isCardSelected ? '#fff' : '#a2a2a2'" class="floor-text">{{room.floor | roomFloor}}</span>
+    </div>
+</div>

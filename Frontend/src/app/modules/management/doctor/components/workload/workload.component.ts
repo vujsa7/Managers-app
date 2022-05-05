@@ -1,13 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Doctor } from '@app/shared/models/doctor.model';
 import { OnCallShift } from '../../models/on-call-shift.model';
 import { Shift } from '../../../models/shift.model';
-import { DoctorService } from '../../services/doctor.service';
 import { ShiftService } from '../../../services/shift.service';
 import { ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { ActivatedRoute } from '@angular/router';
+import { DoctorManagementService } from '../../services/doctor-management.service';
 
 @Component({
   selector: 'doctor-workload',
@@ -16,7 +16,6 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class WorkloadComponent implements OnInit {
 
-  roomId: string = "";
   doctorId!: number;
   doctor!: Doctor;
   currentDate: Date = new Date();
@@ -30,31 +29,27 @@ export class WorkloadComponent implements OnInit {
   chartType: ChartType = "line";
   chartLegend = false;
   chartData = [
-    {data: Array<any>(), label: 'Regular shifts', cubicInterpolationMode: 'monotone', borderColor: '#66A182'},
-    {data: Array<any>(), label: 'On-call shifts', cubicInterpolationMode: 'monotone', borderColor: '#214975'}
+    { data: Array<any>(), label: 'Regular shifts', cubicInterpolationMode: 'monotone', borderColor: '#66A182' },
+    { data: Array<any>(), label: 'On-call shifts', cubicInterpolationMode: 'monotone', borderColor: '#214975' }
   ];
   shifts: Shift[] = [];
-  onCallShifts: OnCallShift[]= [];
+  onCallShifts: OnCallShift[] = [];
   @ViewChild(BaseChartDirective) chart!: BaseChartDirective;
-  
 
-  constructor(private route: ActivatedRoute, private router: Router, private doctorService: DoctorService, private shiftService: ShiftService,
-     private datepipe: DatePipe) { 
-    if(router.getCurrentNavigation()?.extras.state?.roomId)
-      this.roomId = router.getCurrentNavigation()?.extras.state?.roomId;
-  }
+
+  constructor(private doctorManagementService: DoctorManagementService, private datepipe: DatePipe, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.doctorId = parseInt(params['id']);
-      this.doctorService.getDoctor(this.doctorId).subscribe(
+      this.doctorManagementService.getDoctor(this.doctorId).subscribe(
         data => {
           this.doctor = data;
         }
       );
       var firstDateInYear = new Date(new Date().getFullYear(), 0, 1);
       var lastDateInYear = new Date(new Date().getFullYear(), 11, 31);
-      this.shiftService.getOnCallShiftsInDateRange(this.datepipe.transform(firstDateInYear, 'yyyy-MM-dd')!, this.datepipe.transform(lastDateInYear, 'yyyy-MM-dd')!).subscribe(
+      this.doctorManagementService.getOnCallShiftsInDateRange(this.datepipe.transform(firstDateInYear, 'yyyy-MM-dd')!, this.datepipe.transform(lastDateInYear, 'yyyy-MM-dd')!).subscribe(
         data => {
           this.onCallShifts = data;
           this.filterOnCallShiftsForGraph();
@@ -63,15 +58,15 @@ export class WorkloadComponent implements OnInit {
       );
     });
   }
-  
+
 
   filterShiftsForGraph() {
-    for(let month = 0; month < 12; month++){
+    for (let month = 0; month < 12; month++) {
       var firstDateInMonth = new Date(new Date().getFullYear(), month, 1);
-      var lastDateInMonth = new Date(new Date().getFullYear(), month+1, 0);
+      var lastDateInMonth = new Date(new Date().getFullYear(), month + 1, 0);
       var shiftsWorkedCount = 0;
-      for(let shift of this.shifts){
-        if(new Date(shift.start) > firstDateInMonth && new Date(shift.end) < lastDateInMonth){
+      for (let shift of this.shifts) {
+        if (new Date(shift.start) > firstDateInMonth && new Date(shift.end) < lastDateInMonth) {
           shiftsWorkedCount += 1;
         }
       }
@@ -80,26 +75,19 @@ export class WorkloadComponent implements OnInit {
   }
 
   filterOnCallShiftsForGraph() {
-    for(let month = 0; month < 12; month++){
+    for (let month = 0; month < 12; month++) {
       var firstDateInMonth = new Date(new Date().getFullYear(), month, 1);
-      var lastDateInMonth = new Date(new Date().getFullYear(), month+1, 0);
+      var lastDateInMonth = new Date(new Date().getFullYear(), month + 1, 0);
       var onCallShiftsWorkedCount = 0;
-      for(let onCallShift of this.onCallShifts){
-        if(onCallShift.doctorId == this.doctorId){
-          if(new Date(onCallShift.start) > firstDateInMonth && new Date(onCallShift.start) < lastDateInMonth){
+      for (let onCallShift of this.onCallShifts) {
+        if (onCallShift.doctorId == this.doctorId) {
+          if (new Date(onCallShift.start) > firstDateInMonth && new Date(onCallShift.start) < lastDateInMonth) {
             onCallShiftsWorkedCount += 1;
           }
         }
       }
       this.chartData[1].data.push(onCallShiftsWorkedCount);
     }
-  }
-
-  onBack(): void{
-    if(this.roomId != "")
-      this.router.navigate(['/graphical-editors/rooms/' + this.roomId]);
-    else
-      this.router.navigate(['/graphical-editors/'])
   }
 
 }

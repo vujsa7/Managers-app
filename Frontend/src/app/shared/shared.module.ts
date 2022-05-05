@@ -5,25 +5,25 @@ import { FullCalendarModule } from "@fullcalendar/angular";
 import { NgbDatepickerModule, NgbDropdownModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgChartsModule } from "ng2-charts";
 import { NgxSpinnerModule } from "ngx-spinner";
-import { AvailableTimeSlotsComponent } from "./components/available-time-slots/available-time-slots.component";
-import { EquipmentCardComponent } from "./components/equipment-card/equipment-card.component";
 import { InfoDialogComponent } from "./components/info-dialog/info-dialog.component";
 import { OptionalDialogComponent } from "./components/optional-dialog/optional-dialog.component";
 import { PrimaryButtonComponent } from "./components/primary-button/primary-button.component";
-import { RoomCardComponent } from "./components/room-card/room-card.component";
+import { RoomCardComponent } from "../modules/map/floor-plan/components/room-card/room-card.component";
+import { BuildingNamePipe } from "./pipes/building-name.pipe";
+import { RoomFloorPipe } from "./pipes/room-floor.pipe";
 import { RoomStatusToStringPipe } from "./pipes/room-status-to-string.pipe";
 import { RoomTypeToStringPipe } from "./pipes/room-type-to-string.pipe";
 
 @NgModule({
     declarations: [
-        AvailableTimeSlotsComponent,
-        EquipmentCardComponent,
         InfoDialogComponent,
         OptionalDialogComponent,
         PrimaryButtonComponent,
         RoomCardComponent,
         RoomStatusToStringPipe,
         RoomTypeToStringPipe,
+        RoomFloorPipe,
+        BuildingNamePipe,
     ],
     imports: [
         CommonModule,
@@ -37,8 +37,6 @@ import { RoomTypeToStringPipe } from "./pipes/room-type-to-string.pipe";
     ],
     exports: [
         // My shared components
-        AvailableTimeSlotsComponent,
-        EquipmentCardComponent,
         InfoDialogComponent,
         OptionalDialogComponent,
         PrimaryButtonComponent,
@@ -47,6 +45,8 @@ import { RoomTypeToStringPipe } from "./pipes/room-type-to-string.pipe";
         // My shared pipes
         RoomStatusToStringPipe,
         RoomTypeToStringPipe,
+        RoomFloorPipe,
+        BuildingNamePipe,
 
         // Imported modules from packages
         FormsModule,

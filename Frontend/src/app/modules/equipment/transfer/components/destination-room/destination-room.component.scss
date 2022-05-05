@@ -38,11 +38,8 @@
             display: grid;
             grid-gap: 20px;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            grid-template-rows: minmax(70px, 72px);
-            padding: 10px 10px 0 5px;
+            padding: 10px 10px 20px 5px;
             width: 100%;
-            @include scrollbar;
-            height: 69vh;
         }
 
             .room-card-wrapper{

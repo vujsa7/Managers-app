@@ -1,8 +1,8 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Shift } from '@app/modules/management/models/shift.model';
 import { CalendarEvent } from '@app/shared/models/calendar-event.model';
 import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
+
 import { Holiday } from '../../models/holiday.model';
 import { OnCallShift } from '../../models/on-call-shift.model';
 import { WorkdayShift } from '../../models/workday-shift.model';
@@ -12,7 +12,7 @@ import { WorkdayShift } from '../../models/workday-shift.model';
   templateUrl: './schedule-calendar.component.html',
   styleUrls: ['./schedule-calendar.component.scss']
 })
-export class ScheduleCalendarComponent implements OnInit, OnChanges {
+export class ScheduleCalendarComponent implements OnChanges {
   @Input() shifts: WorkdayShift[] = [];
   @Input() onCallShifts: OnCallShift[] = [];
   @Input() holidays: Holiday[] = [];
@@ -23,8 +23,6 @@ export class ScheduleCalendarComponent implements OnInit, OnChanges {
   descriptionText: string = "";
   selectedEventId: string = "";
   showOptionalDialog: boolean = false;
-
-  constructor(@Inject(DOCUMENT) private document: Document) { }
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
@@ -49,16 +47,6 @@ export class ScheduleCalendarComponent implements OnInit, OnChanges {
       }
     }
   };
-
-  ngOnInit(): void {
-    const headEl = this.document.getElementsByTagName('head')[0];
-    const newLinkEl = this.document.createElement('link');
-    newLinkEl.id = 'custom-calendar';
-    newLinkEl.rel = "stylesheet";
-    newLinkEl.href = 'custom-calendar.css';
-
-    headEl.appendChild(newLinkEl);
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['shifts']) {

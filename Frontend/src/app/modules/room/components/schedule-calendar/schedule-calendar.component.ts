@@ -1,13 +1,11 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { CalendarEvent } from '@app/shared/models/calendar-event.model';
-import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
-import { RoomType } from '@app/shared/models/room.model';
+import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
+import { RoomType } from '@app/shared/models/room-type.enum';
 import { RoomTypeToStringPipe } from '@app/shared/pipes/room-type-to-string.pipe';
 import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
 import { MergeRenovation } from '../../models/merge-renovation.model';
 import { SplitRenovation } from '../../models/split-renovation.model';
-import { EquipmentTransferService } from '../../services/equipment-transfer.service';
 import { RenovationService } from '../../services/renovation.service';
 
 @Component({
@@ -15,7 +13,7 @@ import { RenovationService } from '../../services/renovation.service';
   templateUrl: './schedule-calendar.component.html',
   styleUrls: ['./schedule-calendar.component.scss']
 })
-export class ScheduleCalendarComponent implements OnInit {
+export class ScheduleCalendarComponent{
   
   @Input() equipmentTransfers: EquipmentTransfer[] = [];
   @Input() splitRenovations: SplitRenovation[] = [];
@@ -25,9 +23,10 @@ export class ScheduleCalendarComponent implements OnInit {
   descriptionText: string="";
   selectedEventId: string="";
   showOptionalDialog: boolean = false;
+  @Output() deleteEquipmentTransfer = new EventEmitter<any>();
   
 
-  constructor(@Inject(DOCUMENT) private document: Document, private equipmentTransferService: EquipmentTransferService, private renovationService: RenovationService) { }
+  constructor(private renovationService: RenovationService) { }
 
   calendarOptions: CalendarOptions = {
     initialView: 'timeGridWeek',
@@ -59,16 +58,6 @@ export class ScheduleCalendarComponent implements OnInit {
       }
     }
   };
-
-  ngOnInit(): void {
-    const headEl = this.document.getElementsByTagName('head')[0];
-    const newLinkEl = this.document.createElement('link');
-    newLinkEl.id = 'custom-calendar';
-    newLinkEl.rel = "stylesheet";
-    newLinkEl.href = 'custom-calendar.css';
-
-    headEl.appendChild(newLinkEl);
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['equipmentTransfers']) {
@@ -151,7 +140,8 @@ export class ScheduleCalendarComponent implements OnInit {
     this.showOptionalDialog = false;
     if(this.selectedEventId.includes("transfer")){
       let selectedEquipmentTransfer = this.equipmentTransfers.filter(o=>{return o.id == parseInt(this.selectedEventId.slice(0,-8))})[0];
-      this.equipmentTransferService.deleteEquipmentTransfer(selectedEquipmentTransfer).subscribe();
+      
+      this.deleteEquipmentTransfer.emit(selectedEquipmentTransfer);
     } else if(this.selectedEventId.includes("merge")){
       let selectedMergeRenovation = this.mergeRenovations.filter(r=>{return r.id == parseInt(this.selectedEventId.slice(0,-5))})[0];
       this.renovationService.deleteMergeRenovation(selectedMergeRenovation).subscribe();

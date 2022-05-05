@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Shift } from '@app/modules/management/models/shift.model';
-import { ShiftService } from '@app/modules/management/services/shift.service';
 
 import {NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
+import { ShiftCRUDService } from '../../services/shift-crud.service';
 
 @Component({
   selector: 'app-update-shift-dialog',
@@ -18,7 +18,7 @@ export class UpdateShiftDialogComponent implements OnInit, OnChanges {
   startTime: NgbTimeStruct = {hour: 13, minute: 0, second: 0};
   endTime: NgbTimeStruct = {hour: 20, minute: 0, second: 0};
 
-  constructor(config: NgbTimepickerConfig, private shiftService: ShiftService) { 
+  constructor(config: NgbTimepickerConfig, private shiftCRUDService: ShiftCRUDService) { 
     config.spinners = false;
   }
 
@@ -55,7 +55,7 @@ export class UpdateShiftDialogComponent implements OnInit, OnChanges {
     shift.name = this.selectedShift.name;
     shift.start = start;
     shift.end = end;
-    this.shiftService.putShift(shift).subscribe(
+    this.shiftCRUDService.putShift(shift).subscribe(
       data => {
         this.notifyCloseDialog.emit("close");
       }

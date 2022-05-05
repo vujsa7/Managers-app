@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OverviewComponent } from './components/overview/overview.component';
+import { TransferComponent } from './transfer.component';
 
 const routes: Routes = [
-  { path: '', component: OverviewComponent },
+  { path: '', component: TransferComponent },
   { path: '**', redirectTo: '' }
 ];
 

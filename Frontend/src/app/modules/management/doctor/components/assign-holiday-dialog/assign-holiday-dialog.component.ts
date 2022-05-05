@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { Holiday } from '../../models/holiday.model';
-import { HolidayService } from '../../services/holiday.service';
+import { DoctorManagementService } from '../../services/doctor-management.service';
 
 @Component({
   selector: 'app-assign-holiday-dialog',
@@ -22,7 +22,7 @@ export class AssignHolidayDialogComponent implements OnInit {
   toDate: NgbDate | null;
   minDate!: NgbDate;
 
-  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private holidayService: HolidayService) { 
+  constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private doctorManagementService: DoctorManagementService) { 
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     this.minDate = calendar.getToday();
@@ -94,13 +94,13 @@ export class AssignHolidayDialogComponent implements OnInit {
 
   assignHoliday(): void {
     if(this.update){
-      this.holidayService.updateHoliday(this.holiday).subscribe(
-        (data) => console.log("OK"),
+      this.doctorManagementService.updateHoliday(this.holiday).subscribe(
+        (_) => console.log("OK"),
         (error) => alert(error.error)
       );
     } else {
-      this.holidayService.postHoliday(this.holiday).subscribe(
-            (data) => console.log("OK"),
+      this.doctorManagementService.postHoliday(this.holiday).subscribe(
+            (_) => console.log("OK"),
             (error) => alert(error.error)
           );
     }
@@ -114,7 +114,7 @@ export class AssignHolidayDialogComponent implements OnInit {
   }
 
   deleteHoliday(): void {
-    this.holidayService.deleteHoliday(this.holiday).subscribe();
+    this.doctorManagementService.deleteHoliday(this.holiday).subscribe();
     this.notifyCloseHolidayDialog.emit();
     this.notifyReload.emit();
   }

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph Layout="Sugiyama" ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Label="AppComponent" Id="AppComponent" Bounds="1336,-132,126.9794921875,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/app.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="AssignHolidayDialogComponent..." Id="AssignHolidayDialogComponent" Bounds="871,189,239.7861328125,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/management/doctor/components/assign-holiday-dialog/assign-holiday-dialog.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="NgbCalendar" Id="NgbCalendar" Bounds="565,365,104.49609375,36" UseManualLocation="True" Category="injectable">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="NgbDateParserFormatter" Id="NgbDateParserFormatter" Bounds="849,933,179.1650390625,36" UseManualLocation="True" Category="injectable">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="HolidayService" Id="HolidayService" Bounds="583,215,115.3720703125,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/modules/management/doctor/services/holiday.service.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="AssignOnCallShiftDialogComponent..." Id="AssignOnCallShiftDialogComponent" Bounds="557,-419,277.1103515625,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/management/doctor/components/assign-on-call-shift-dialog/assign-on-call-shift-dialog.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="ShiftService" Id="ShiftService" Bounds="615,82,96.6962890625,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/modules/management/services/shift.service.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="AssignShiftDialogComponentIn..." Id="AssignShiftDialogComponent" Bounds="500,-156,220.32421875,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/management/doctor/components/assign-shift-dialog/assign-shift-dialog.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="DatePipe" Id="DatePipe" Bounds="291,-1227,79.5927734375,36" UseManualLocation="True" Category="injectable">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="AvailableTimeSlotsComponent" Id="AvailableTimeSlotsComponent" Bounds="623,691,227.3720703125,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/shared/components/available-time-slots/available-time-slots.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="EquipmentTransferService" Id="EquipmentTransferService" Bounds="-384,-914,187.2177734375,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/modules/room/services/equipment-transfer.service.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="AvailableTimeSlotsService" Id="AvailableTimeSlotsService" Bounds="177,565,186.9580078125,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/core/services/available-time-slots.service.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="RenovationService" Id="RenovationService" Bounds="108,295,139.509765625,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/modules/room/services/renovation.service.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="BuildingPlanSvgComponent" Id="BuildingPlanSvgComponent" Bounds="1333,-216,210.9931640625,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/map/building-plan/components/building-plan-svg/building-plan-svg.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="BuildingPlanComponent" Id="BuildingPlanComponent" Bounds="-500,-109,185.3173828125,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/map/building-plan/building-plan.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="BuildingService" Id="BuildingService" Bounds="319,-669,118.49609375,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/modules/map/building-plan/services/building.service.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="D3Service" Id="D3Service" Bounds="28,-28,86.5791015625,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/modules/map/services/d3.service.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="Router" Id="Router" Bounds="-1270,-266,64.0205078125,36" UseManualLocation="True" Category="injectable">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="CreateShiftDialogComponentIn..." Id="CreateShiftDialogComponent" Bounds="1027,428,217.2275390625,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/management/shift/components/create-shift-dialog/create-shift-dialog.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="DestinationRoomCardComponent..." Id="DestinationRoomCardComponent" Bounds="1173,-944,247.5517578125,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/equipment/transfer/components/destination-room-card/destination-room-card.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="DestinationRoomComponent" Id="DestinationRoomComponent" Bounds="28,-931,215.6552734375,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/equipment/transfer/components/destination-room/destination-room.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="RoomTypeToStringPipe" Id="RoomTypeToStringPipe" Bounds="31,-1116,169.0751953125,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/shared/pipes/room-type-to-string.pipe.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="DetailsEditComponentInputs:..." Id="DetailsEditComponent" Bounds="-961,-865,172.1171875,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/room/components/details-edit/details-edit.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="RoomService" Id="RoomService" Bounds="-961,-743,106.02734375,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/modules/room/services/room.service.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="DetailsComponent" Id="DetailsComponent" Bounds="-1381,-813,145.67578125,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/room/components/details/details.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="DoctorService" Id="DoctorService" Bounds="-1269,-949,109.9169921875,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/modules/room/services/doctor.service.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="ActivatedRoute" Id="ActivatedRoute" Bounds="-1261,-533,116.9443359375,36" UseManualLocation="True" Category="injectable">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="EquipmentCardComponentInputs..." Id="EquipmentCardComponent" Bounds="1167,-737,203.9931640625,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/shared/components/equipment-card/equipment-card.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="FloorPlanSvgComponent" Id="FloorPlanSvgComponent" Bounds="1144,-1003,190,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/map/floor-plan/components/floor-plan-svg/floor-plan-svg.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="FloorPlanComponent" Id="FloorPlanComponent" Bounds="-17,-486,164.32421875,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/map/floor-plan/floor-plan.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="FloorPlanService" Id="FloorPlanService" Bounds="7,-653,128.599609375,36" UseManualLocation="True" Category="injectable" TypescriptFilepath="./src/app/modules/map/floor-plan/services/floor-plan.service.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="InfoDialogComponentInputs:&lt;..." Id="InfoDialogComponent" Bounds="1379,-50,168.2001953125,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/shared/components/info-dialog/info-dialog.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="OnboardingComponent" Id="OnboardingComponent" Bounds="1303,-256,179.08984375,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/onboarding/onboarding.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="OptionalDialogComponentInput..." Id="OptionalDialogComponent" Bounds="1176,-664,199.3173828125,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/shared/components/optional-dialog/optional-dialog.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="PrimaryButtonComponentInputs..." Id="PrimaryButtonComponent" Bounds="1293,-355,197,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/shared/components/primary-button/primary-button.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="RenovationComponent" Id="RenovationComponent" Bounds="-442,-347,175.9931640625,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/room/components/renovation/renovation.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="RoomCardComponentInputs:&lt;/b..." Id="RoomCardComponent" Bounds="1147,-810,171.32421875,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/shared/components/room-card/room-card.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="ScheduleCalendarComponentInp..." Id="ScheduleCalendarComponent" Bounds="1166,-878,221.9169921875,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/management/doctor/components/schedule-calendar/schedule-calendarcomponent.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="ScheduleComponent" Id="ScheduleComponent" Bounds="-593,-735,162.0068359375,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/room/components/schedule/schedule.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="NgxSpinnerService" Id="NgxSpinnerService" Bounds="-619,-959,141.833984375,36" UseManualLocation="True" Category="injectable">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="ScrollBoxComponentInputs:&lt;/..." Id="ScrollBoxComponent" Bounds="1217,-537,165.1171875,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/map/floor-plan/components/scroll-box/scroll-box.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="SelectEquipmentComponent" Id="SelectEquipmentComponent" Bounds="-383,-1079,213.3447265625,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/equipment/transfer/components/select-equipment/select-equipment.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="ShiftComponent" Id="ShiftComponent" Bounds="280,30,130.869140625,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/management/shift/components/shift/shift.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="SideBarComponentInputs:..." Id="SideBarComponent" Bounds="1244,-416,152.67578125,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/map/floor-plan/components/side-bar/side-bar.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="StepsComponentInputs:c..." Id="StepsComponent" Bounds="1170,-598,137.8896484375,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/equipment/transfer/components/steps/steps.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="TimeComponent" Id="TimeComponent" Bounds="-894,396,132.1884765625,36" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/equipment/transfer/components/time/time.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="UpdateShiftDialogComponentIn..." Id="UpdateShiftDialogComponent" Bounds="772,-88,221.0966796875,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/management/shift/components/update-shift-dialog/update-shift-dialog.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="WorkloadComponentViewchilds:..." Id="WorkloadComponent" Bounds="-1019,-1072,163.2919921875,50" UseManualLocation="True" Category="component" TypescriptFilepath="./src/app/modules/management/doctor/components/workload/workload.component.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="BuildingNamePipe" Id="BuildingNamePipe" Bounds="1270,-302,145.6826171875,36" UseManualLocation="True" Category="pipe" TypescriptFilepath="./src/app/shared/pipes/building-name.pipe.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="RoomFloorPipe" Id="RoomFloorPipe" Bounds="1209,-480,126.220703125,36" UseManualLocation="True" Category="pipe" TypescriptFilepath="./src/app/shared/pipes/room-floor.pipe.ts">
+      <Category Ref="File"/>
+    </Node>
+    <Node Label="RoomStatusToStringPipe" Id="RoomStatusToStringPipe" Bounds="1411,50,190.51953125,35.99999999999999" UseManualLocation="True" Category="pipe" TypescriptFilepath="./src/app/shared/pipes/room-status-to-string.pipe.ts">
+      <Category Ref="File"/>
+    </Node>
+  </Nodes>
+  <Links>
+    <Link Source="NgbCalendar" Target="AssignHolidayDialogComponent" Category="injectable" Label="NgbCalendar injected into AssignHolidayDialogComponent"/>
+    <Link Source="NgbDateParserFormatter" Target="AssignHolidayDialogComponent" Category="injectable" Label="NgbDateParserFormatter injected into AssignHolidayDialogComponent"/>
+    <Link Source="HolidayService" Target="AssignHolidayDialogComponent" Category="injectable" Label="HolidayService injected into AssignHolidayDialogComponent"/>
+    <Link Source="ShiftService" Target="AssignOnCallShiftDialogComponent" Category="injectable" Label="ShiftService injected into AssignOnCallShiftDialogComponent"/>
+    <Link Source="ShiftService" Target="AssignShiftDialogComponent" Category="injectable" Label="ShiftService injected into AssignShiftDialogComponent"/>
+    <Link Source="DatePipe" Target="AssignShiftDialogComponent" Category="injectable" Label="DatePipe injected into AssignShiftDialogComponent"/>
+    <Link Source="NgbCalendar" Target="AvailableTimeSlotsComponent" Category="injectable" Label="NgbCalendar injected into AvailableTimeSlotsComponent"/>
+    <Link Source="NgbDateParserFormatter" Target="AvailableTimeSlotsComponent" Category="injectable" Label="NgbDateParserFormatter injected into AvailableTimeSlotsComponent"/>
+    <Link Source="EquipmentTransferService" Target="AvailableTimeSlotsComponent" Category="injectable" Label="EquipmentTransferService injected into AvailableTimeSlotsComponent"/>
+    <Link Source="AvailableTimeSlotsService" Target="AvailableTimeSlotsComponent" Category="injectable" Label="AvailableTimeSlotsService injected into AvailableTimeSlotsComponent"/>
+    <Link Source="RenovationService" Target="AvailableTimeSlotsComponent" Category="injectable" Label="RenovationService injected into AvailableTimeSlotsComponent"/>
+    <Link Source="BuildingService" Target="BuildingPlanComponent" Category="injectable" Label="BuildingService injected into BuildingPlanComponent"/>
+    <Link Source="D3Service" Target="BuildingPlanComponent" Category="injectable" Label="D3Service injected into BuildingPlanComponent"/>
+    <Link Source="Router" Target="BuildingPlanComponent" Category="injectable" Label="Router injected into BuildingPlanComponent"/>
+    <Link Source="ShiftService" Target="CreateShiftDialogComponent" Category="injectable" Label="ShiftService injected into CreateShiftDialogComponent"/>
+    <Link Source="NgbCalendar" Target="CreateShiftDialogComponent" Category="injectable" Label="NgbCalendar injected into CreateShiftDialogComponent"/>
+    <Link Source="EquipmentTransferService" Target="DestinationRoomComponent" Category="injectable" Label="EquipmentTransferService injected into DestinationRoomComponent"/>
+    <Link Source="RoomTypeToStringPipe" Target="DestinationRoomComponent" Category="injectable" Label="RoomTypeToStringPipe injected into DestinationRoomComponent"/>
+    <Link Source="RoomService" Target="DetailsEditComponent" Category="injectable" Label="RoomService injected into DetailsEditComponent"/>
+    <Link Source="RoomService" Target="DetailsComponent" Category="injectable" Label="RoomService injected into DetailsComponent"/>
+    <Link Source="DoctorService" Target="DetailsComponent" Category="injectable" Label="DoctorService injected into DetailsComponent"/>
+    <Link Source="Router" Target="DetailsComponent" Category="injectable" Label="Router injected into DetailsComponent"/>
+    <Link Source="ActivatedRoute" Target="DetailsComponent" Category="injectable" Label="ActivatedRoute injected into DetailsComponent"/>
+    <Link Source="D3Service" Target="FloorPlanComponent" Category="injectable" Label="D3Service injected into FloorPlanComponent"/>
+    <Link Source="FloorPlanService" Target="FloorPlanComponent" Category="injectable" Label="FloorPlanService injected into FloorPlanComponent"/>
+    <Link Source="ActivatedRoute" Target="FloorPlanComponent" Category="injectable" Label="ActivatedRoute injected into FloorPlanComponent"/>
+    <Link Source="RoomService" Target="RenovationComponent" Category="injectable" Label="RoomService injected into RenovationComponent"/>
+    <Link Source="D3Service" Target="RenovationComponent" Category="injectable" Label="D3Service injected into RenovationComponent"/>
+    <Link Source="ActivatedRoute" Target="RenovationComponent" Category="injectable" Label="ActivatedRoute injected into RenovationComponent"/>
+    <Link Source="RenovationService" Target="ScheduleComponent" Category="injectable" Label="RenovationService injected into ScheduleComponent"/>
+    <Link Source="EquipmentTransferService" Target="ScheduleComponent" Category="injectable" Label="EquipmentTransferService injected into ScheduleComponent"/>
+    <Link Source="RoomService" Target="ScheduleComponent" Category="injectable" Label="RoomService injected into ScheduleComponent"/>
+    <Link Source="NgxSpinnerService" Target="ScheduleComponent" Category="injectable" Label="NgxSpinnerService injected into ScheduleComponent"/>
+    <Link Source="ActivatedRoute" Target="ScheduleComponent" Category="injectable" Label="ActivatedRoute injected into ScheduleComponent"/>
+    <Link Source="EquipmentTransferService" Target="SelectEquipmentComponent" Category="injectable" Label="EquipmentTransferService injected into SelectEquipmentComponent"/>
+    <Link Source="ShiftService" Target="ShiftComponent" Category="injectable" Label="ShiftService injected into ShiftComponent"/>
+    <Link Source="Router" Target="TimeComponent" Category="injectable" Label="Router injected into TimeComponent"/>
+    <Link Source="NgbCalendar" Target="TimeComponent" Category="injectable" Label="NgbCalendar injected into TimeComponent"/>
+    <Link Source="NgbDateParserFormatter" Target="TimeComponent" Category="injectable" Label="NgbDateParserFormatter injected into TimeComponent"/>
+    <Link Source="EquipmentTransferService" Target="TimeComponent" Category="injectable" Label="EquipmentTransferService injected into TimeComponent"/>
+    <Link Source="AvailableTimeSlotsService" Target="TimeComponent" Category="injectable" Label="AvailableTimeSlotsService injected into TimeComponent"/>
+    <Link Source="ShiftService" Target="UpdateShiftDialogComponent" Category="injectable" Label="ShiftService injected into UpdateShiftDialogComponent"/>
+    <Link Source="DoctorService" Target="WorkloadComponent" Category="injectable" Label="DoctorService injected into WorkloadComponent"/>
+    <Link Source="ShiftService" Target="WorkloadComponent" Category="injectable" Label="ShiftService injected into WorkloadComponent"/>
+    <Link Source="DatePipe" Target="WorkloadComponent" Category="injectable" Label="DatePipe injected into WorkloadComponent"/>
+    <Link Source="Router" Target="WorkloadComponent" Category="injectable" Label="Router injected into WorkloadComponent"/>
+    <Link Source="ActivatedRoute" Target="WorkloadComponent" Category="injectable" Label="ActivatedRoute injected into WorkloadComponent"/>
+  </Links>
+  <Categories>
+    <Category Id="component" Label="Component" Background="#0288d1" IsTag="True"/>
+    <Category Id="File" Icon="File" IsTag="True"/>
+    <Category Id="injectable" Label="Service" Background="#97c2fc" IsTag="True"/>
+    <Category Id="pipe" Label="Pipe" Background="#00897b" IsTag="True"/>
+  </Categories>
+  <Properties>
+    <Property Id="TypescriptFilepath" DataType="System.String" Label="Typescript filepath" IsReference="true"/>
+    <Property Id="Background" DataType="System.Windows.Media.Brush"/>
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation"/>
+    <Property Id="UseManualLocation" DataType="System.Boolean"/>
+    <Property Id="Label" DataType="System.String"/>
+    <Property Id="Layout" DataType="System.String"/>
+    <Property Id="ZoomLevel" DataType="System.String"/>
+    <Property Id="Bounds" DataType="System.Windows.Rect"/>
+  </Properties>
+</DirectedGraph>

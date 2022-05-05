@@ -1,0 +1,27 @@
+<div class="d-flex flex-column" id="move-equipment">
+    <div class="header-equipment-transfer d-flex flex-row justify-content-between">
+        <div class="back-to-map d-flex flex-row">
+            <div class="back-to-map-btn" routerLink="/map/building-plan">
+                <svg class="back-icon"></svg>
+                <span class="align-middle ms-1">Map view</span>
+            </div>
+        </div>
+        <tr-steps [completedSteps]="completedSteps" [mode]="mode" (modeChanged)="onModeChanged($event)"></tr-steps>
+    </div>
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-row justify-content-between">
+            <div class="d-flex flex-row">
+                <h2 [style.font-weight]="'bold'" [style.color]="'#214975'">Equipment transfer</h2>
+            </div>
+        </div>
+        <tr-select-equipment (equipmentTransferChanged)="onEquipmentTransferChanged()"
+            [style.display]=" mode=='equipment-overview' ? 'block' : 'none'" class="functionalities-view"
+            [equipmentTransfer]="equipmentTransfer" (confirmQuantityEvent)="confirmEquipmentQuantity()">
+        </tr-select-equipment>
+        <tr-destination-room [style.display]="mode=='destination-room' ? 'block' : 'none'"
+            class="functionalities-view" [equipmentTransfer]="equipmentTransfer"
+            (selectDestinationRoomEvent)="selectDestinationRoom()"></tr-destination-room>
+        <tr-time [style.display]="mode=='transfer-time' ? 'block' : 'none'"
+            class="functionalities-view" [equipmentTransfer]="equipmentTransfer"></tr-time>
+    </div>
+</div>

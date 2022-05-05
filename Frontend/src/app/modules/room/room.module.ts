@@ -8,10 +8,9 @@ import { DetailsEditComponent } from './components/details-edit/details-edit.com
 import { RenovationComponent } from './components/renovation/renovation.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { ScheduleCalendarComponent } from './components/schedule-calendar/schedule-calendar.component';
-import { EquipmentTransferService } from './services/equipment-transfer.service';
 import { RenovationService } from './services/renovation.service';
-import { RoomService } from './services/room.service';
-import { DoctorService } from './services/doctor.service';
+import { MapModule } from '../map/map.module';
+import { RenovationTime } from './components/renovation-time/renovation-time.component';
 
 
 @NgModule({
@@ -20,18 +19,17 @@ import { DoctorService } from './services/doctor.service';
     DetailsEditComponent,
     RenovationComponent,
     ScheduleComponent,
-    ScheduleCalendarComponent
+    ScheduleCalendarComponent,
+    RenovationTime
   ],
   imports: [
     CommonModule,
     RoomRoutingModule,
     SharedModule,
+    MapModule
   ],
   providers: [
-    EquipmentTransferService,
-    DoctorService,
-    RenovationService,
-    RoomService
+    RenovationService
   ]
 })
 export class RoomModule { }

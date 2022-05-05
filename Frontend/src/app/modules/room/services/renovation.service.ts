@@ -1,17 +1,14 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BaseHttpService } from '@app/core/services/base-http.service';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { MergeRenovation } from '../models/merge-renovation.model';
 import { SplitRenovation } from '../models/split-renovation.model';
 
 @Injectable({
   providedIn: 'any'
 })
-export class RenovationService {
-  private baseUrl: string = environment.baseUrlHospital;
-
-  constructor(private http: HttpClient) { }
+export class RenovationService extends BaseHttpService  {
 
   postSplitRenovation(splitRenovation: SplitRenovation): Observable<SplitRenovation> {
     return this.http.post<SplitRenovation>(this.baseUrl + 'splitRenovations', splitRenovation);
@@ -49,6 +46,23 @@ export class RenovationService {
       mergeRenovation    
     } 
     return this.http.delete<MergeRenovation>(this.baseUrl + 'mergeRenovations', options);
+  }
+
+  getAvailableTimeSlots(start: string, end: string, duration: string, firstRoomId: number, secondRoomId?: number): Observable<Date[]> {
+    let params = new HttpParams()
+        .set('start', start)
+        .set('end', end)
+        .set('duration', duration)
+        .set('firstRoomId', firstRoomId);
+    if(secondRoomId){
+        params = new HttpParams()
+        .set('start', start)
+        .set('end', end)
+        .set('duration', duration)
+        .set('firstRoomId', firstRoomId)
+        .set('secondRoomId', secondRoomId);
+    }
+    return this.http.get<Date[]>(this.baseUrl + "availableTimeSlots", {params});
   }
 
 }

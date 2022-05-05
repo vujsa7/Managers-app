@@ -1,0 +1,30 @@
+@import 'src/styles/main.scss';
+
+#move-equipment{
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+    .header-equipment-transfer{
+        height: 65px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+        .back-icon{
+            margin-right: 5px;
+            @include icon;
+            @include background-svg($back-icon);
+        }
+
+        .back-to-map-btn{
+            cursor: pointer;
+        }
+
+            .back-to-map-btn span{
+                color: color(darkgrey);
+            }
+    
+    .functionalities-view{
+        height: 100%;
+    }
