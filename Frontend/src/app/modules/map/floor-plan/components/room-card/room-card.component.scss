@@ -16,6 +16,10 @@
     .status-text{
         font-size: 14px;
         color: green;
+
+        @include media("<phone-medium"){
+            display: none;
+        }
     }
 
     .floor-text{

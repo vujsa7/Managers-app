@@ -1,7 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseHttpService } from '@app/core/services/base-http.service';
-import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
+import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
 import { Observable } from 'rxjs';
 import { MergeRenovation } from '../models/merge-renovation.model';
 import { SplitRenovation } from '../models/split-renovation.model';

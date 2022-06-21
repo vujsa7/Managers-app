@@ -1,10 +1,10 @@
 <div class="d-flex flex-column equipment-overview">
     <div class="search-container d-flex flex-row">
-        <input type="search" (keyup.enter)="search()" class="form-control search-field" [(ngModel)]="searchInput" id="searchInput" placeholder="Search">
+        <input type="search" (keyup.enter)="search()" class="form-control search-field" [(ngModel)]="searchInput" id="searchInput">
         <app-primary-button (click)="search()" [text]="'Search'"></app-primary-button>
     </div>
     <div class="subtitle-equipment-transfer d-flex flex-row justify-content-between">
-        <h3 class="">Select equipment for transfer</h3>
+        <h3 class="grey-text">Select equipment for transfer</h3>
         <span class="align-middle remove-filter" *ngIf="isSearchActive" (click)="removeFilter()">Remove filter</span>
     </div> 
     <div class="select-view d-flex flex-row">
@@ -16,7 +16,7 @@
                 <span class="title fw-bold">Selected equipment</span>
                 <div *ngIf="selectedEquipment">
                     <span class="subtitle">{{selectedEquipment.equipmentItemName}}</span>
-                    <div class="d-flex justify-content-between">
+                    <div class="room-and-quantity d-flex justify-content-between align-items-center">
                         <span class="room-info">{{selectedEquipment.roomType | roomTypeToString}} {{selectedEquipment.roomName}}</span>
                         <div class="d-flex flex-row align-items-center">
                             <svg (click)="decreaseQuantity()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 13H5V11H19V13Z" fill="#A2A2A2"/></svg>       
@@ -27,7 +27,7 @@
                 </div>
                 <span (click)="removeSelectedEquipment()" class="remove-item">Remove</span>
             </div>
-            <app-primary-button class="mt-3" text="Continue" (click)="confirmQuantity()"></app-primary-button>
+            <app-primary-button class="mt-3 continue-btn" text="Continue" (click)="confirmQuantity()"></app-primary-button>
         </div>
     </div>
 </div>

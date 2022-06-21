@@ -8,11 +8,19 @@
         height: 33px;
         margin-top: 10px;
         margin-bottom: 10px;
-        width: 50%
+        width: 50%;
+
+        @include media("<tablet-large"){
+            width: 100%;
+        }
     }
 
         .search-field{
             margin-right: 12px;
+
+            &:focus{
+                border: 1px solid darkgrey !important;
+            }
         }
 
 

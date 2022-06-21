@@ -1,23 +1,56 @@
 @import 'src/styles/main.scss';
 
-.step{
-    &:hover{
-        cursor: pointer;
+.steps{
+
+    @include media("<phone-medium"){
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        border-left: 1px solid color(lightgrey);
+        padding-left: 5px;
+
+        div{
+            margin-bottom: 15px;
+    
+            &:last-child{
+                margin: 0 !important;
+            }
+        }
     }
 }
 
-    .location-icon{
-        margin: 0 5px;
-        @include icon;
-        @include background-svg($location-icon);
+    .step{
+        &:hover{
+            cursor: pointer;
+        }
     }
 
-    .checkmark-icon{
-        margin: 0 5px;
-        @include icon;
-        @include background-svg($checkmark-icon);
-    }
+        .arrow{
+            min-width: 24px;
+            min-height: 24px;
 
-    .number-icon{
-        margin: 0 5px;
-    }
+            @include media("<phone-medium"){
+                display: none;
+            }
+        }
+
+        .location-icon{
+            margin: 0 5px;
+            @include icon;
+            min-height: 24px;
+            min-width: 24px;
+            @include background-svg($location-icon);
+        }
+
+        .checkmark-icon{
+            margin: 0 5px;
+            @include icon;
+            min-height: 24px;
+            min-width: 24px;
+            @include background-svg($checkmark-icon);
+        }
+
+        .number-icon{
+            min-height: 24px;
+            min-width: 24px;
+            margin: 0 5px;
+        }

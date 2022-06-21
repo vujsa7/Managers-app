@@ -4,8 +4,8 @@ import { EquipmentTransferService } from '@app/modules/equipment/transfer/servic
 import { MergeRenovation } from '@app/modules/room/models/merge-renovation.model';
 import { SplitRenovation } from '@app/modules/room/models/split-renovation.model';
 import { RenovationService } from '@app/modules/room/services/renovation.service';
+import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
 
-import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

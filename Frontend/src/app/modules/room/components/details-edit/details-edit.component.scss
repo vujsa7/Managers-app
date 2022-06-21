@@ -1,5 +1,9 @@
 @import 'src/styles/main.scss';
 
+.title{
+    color: color(blue);
+}
+
 textarea{
     resize: none;
     border: 1px solid color(darkgrey);

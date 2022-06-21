@@ -1,32 +1,131 @@
 @import 'src/styles/main.scss';
 
-.floor-and-button-wrapper{
-    position: absolute;
-    top: 50%;
-    left: 2.78vw;
-    transform: translate(0, -50%);
-    width: 11.57vw;
+#floor-plan{
+    background-color: rgb(40, 40, 40);
+    overflow: hidden;
 }
 
-    .floor-container{
-        background-color: white;
-        border-radius: 5px;
-        margin-bottom: 20px;
+    .floor-and-button-wrapper{
+        position: absolute;
+        top: 50%;
+        left: 2.78vw;
+        transform: translate(0, -50%);
+        width: 14.57vw;
+        
+        @include media("<desktop-medium"){
+            display: none !important;
+        }
     }
 
-        .title{
-            color: color(blue);
-            font-size:  1.25rem;
+        .floor-wrapper{
+            background-color: white;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 6px;
         }
 
-        .radio-btn:hover{
-            cursor: pointer;
+            .floor-box{
+                height: 35px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                border-radius: 5px;
+                background-color: color(lightgrey);
+                transition: 0.2s all ease-in;
+                margin-bottom: 6px;
+
+                &:hover{
+                    filter: brightness(0.8);
+                }
+
+                &:last-child{
+                    margin-bottom: 0;
+                    margin-left: 0;
+                }
+
+                span{
+                    color: color(darkgrey);
+                    font-weight: bold;
+                }
+
+                @include media("<desktop-medium"){
+                    margin-bottom: 0;
+                }
+                
+            }
+
+            .floor-box-selected{
+                background-color: color(blue);
+
+                span{
+                    color: white;
+                }
+            }
+
+            hr{
+                margin: 9px 0 15px 0;
+                width: 90%;
+                background-color: color(darkgrey);
+            }
+
+        .select-floor{
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+
+            @include media(">=desktop-medium"){
+                display: none;
+            }
         }
-        
-.room-info-outer-container{
-    position: absolute;
-    width: 22.07vw;
-    right: 0;
-    height: 100%;
-    background-color: white;
-}
+
+            ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+                background-color: color(lightgrey) !important;
+                border-radius: 4px !important;
+            }
+
+            ::ng-deep .mat-form-field-underline{
+                display: none !important;
+            }
+
+        .mode-box{
+            width: 100%;
+            background-color: color(lightgrey);
+            border-radius: 5px;
+            height: 34px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease-in-out;
+    
+            span{
+                font-weight: bold;
+                color: rgb(213, 213, 213),
+            }
+        }
+
+        .secondary-btn.active{
+            background-color: color(blue);
+
+            span{
+                color: white;
+            }
+        }
+
+    .back-to-map{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        cursor: pointer;
+
+        span{
+            text-shadow: rgba(0, 0, 0, 0.6) 0px 0px 10px ;
+        }
+    }
+
+        .back-btn{
+            @include background-svg($back-arrow-bold);
+            @include icon;
+        }

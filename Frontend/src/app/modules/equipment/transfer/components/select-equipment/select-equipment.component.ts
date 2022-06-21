@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
+import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
 import { EquipmentWithRoom } from '../../models/equipment-with-room';
 import { EquipmentTransferService } from '../../services/equipment-transfer.service';
 

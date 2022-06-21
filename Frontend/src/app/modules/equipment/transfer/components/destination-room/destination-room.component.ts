@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
+import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
 import { RoomTypeToStringPipe } from '@app/shared/pipes/room-type-to-string.pipe';
 import { Room } from '../../models/room';
 import { EquipmentTransferService } from '../../services/equipment-transfer.service';

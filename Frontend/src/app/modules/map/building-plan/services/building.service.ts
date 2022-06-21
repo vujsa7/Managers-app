@@ -3,14 +3,15 @@ import { Observable } from "rxjs";
 
 import buildingsJson from 'src/assets/buildingComponents.json';
 import { BaseHttpService } from "@app/core/services/base-http.service";
+import { Building } from "../models/building.model";
 
 @Injectable({
     providedIn: 'any'
 })
 export class BuildingService extends BaseHttpService{
 
-    getBuildings(): Observable<any> {
-        return this.http.get(this.baseUrl + 'buildings');
+    getBuildings(): Observable<Building[]> {
+        return this.http.get<Building[]>(this.baseUrl + 'buildings');
     }
 
     getMainBuildingComponents(): any {

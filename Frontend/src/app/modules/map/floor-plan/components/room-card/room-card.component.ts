@@ -1,27 +1,28 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { RoomStatus } from '@app/shared/models/room-status.enum';
 import { RoomBasicInfo } from '@app/shared/models/room-basic-info.model';
+import { Select, Store } from '@ngxs/store';
+import { UpdateSelectedRoomId } from '../../state/floor-plan.actions';
+import { FloorPlanState } from '../../state/floor-plan.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'floor-room-card',
   templateUrl: './room-card.component.html',
   styleUrls: ['./room-card.component.scss']
 })
-export class RoomCardComponent implements OnChanges {
+export class RoomCardComponent implements OnInit {
 
   @Input() room!: RoomBasicInfo;
-  @Input() selectedRoomId : number = -1; 
-  @Output() notifyDisplayRoom = new EventEmitter<number>();
+  @Select(FloorPlanState.selectSelectedRoomId) selectedRoomId$!: Observable<number>;
   isCardSelected : boolean = false;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['selectedRoomId']) {
-      this.selectedRoomId = changes.selectedRoomId.currentValue;
-      if(this.room.id == this.selectedRoomId)
-        this.isCardSelected = true;
-      else 
-        this.isCardSelected = false;
-    }
+  constructor(private store: Store){}
+
+  ngOnInit(): void {
+    this.selectedRoomId$.subscribe(data => {
+      this.isCardSelected = data == this.room.id;
+    })
   }
 
   roomStatusColor() : string{
@@ -38,7 +39,8 @@ export class RoomCardComponent implements OnChanges {
   }
 
   displayRoomOnMap(){
-    this.notifyDisplayRoom.emit(this.room.id);
+    this.isCardSelected = true;
+    this.store.dispatch(new UpdateSelectedRoomId(this.room.id));
   }
 
 }

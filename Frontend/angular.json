@@ -46,19 +46,21 @@
 						"tsConfig": "tsconfig.app.json",
 						"assets": [
 							"src/favicon.ico",
-							"src/assets"
+							"src/assets",
+							"src/material-theme.scss"
 						],
 						"styles": [
+							"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
 							"src/global.scss",
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
 							{
-								"input" : "src/styles/components/_calendar.scss",
-								"bundleName" : "custom-calendar",
+								"input": "src/styles/components/_calendar.scss",
+								"bundleName": "custom-calendar",
 								"inject": false
 							},
 							{
-								"input" : "src/styles/components/_calendar.scss",
-								"bundleName" : "doctor-schedule-calendar",
+								"input": "src/styles/components/_calendar.scss",
+								"bundleName": "doctor-schedule-calendar",
 								"inject": false
 							}
 						],
@@ -124,9 +126,11 @@
 						"karmaConfig": "karma.conf.js",
 						"assets": [
 							"src/favicon.ico",
-							"src/assets"
+							"src/assets",
+							"src/material-theme.scss"
 						],
 						"styles": [
+							"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
 							"src/global.scss"
 						],
 						"scripts": []

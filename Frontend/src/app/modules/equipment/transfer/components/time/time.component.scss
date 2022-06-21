@@ -1,13 +1,13 @@
 @import 'src/styles/main.scss';
 
 .time-overview{
-    overflow-y: hidden;
+    height: 84vh;
 }
 
     .search-container{
         margin-top: 10px;
         margin-bottom: 10px;
-        width: 100%
+        width: 100%;
     }
 
         .custom-date-picker{
@@ -15,6 +15,14 @@
             height: 33px;
             box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.06);
             margin-right: 20px;
+
+            @include media("<tablet"){
+                margin-right: 0px;
+            }
+
+            &:focus{
+                border: none !important;
+            }
         }
 
     h3{
@@ -28,15 +36,30 @@
         cursor: pointer;
         color: color(darkgrey);
         font-size: 14px;
+
+        @include media("<phone-medium"){
+            display: none;
+        }
     }
 
 
     .time-form{
         padding-left: 6px;
+
+        @include media("<tablet"){
+            flex-direction: column !important;
+            width: 100%;
+        }
     }
 
+        .time-form > *{
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
         .form-group.hidden {
-            width: 0;
+            width: 0 !important;
+            height: 0;
             margin: 0;
             border: none;
             padding: 0;
@@ -68,10 +91,6 @@
             position: relative;
         }
 
-            input{
-                background-color: white !important;
-            }
-
             .calendar{
                 position: absolute;
                 @include icon;
@@ -79,6 +98,10 @@
                 top: 6px;
                 @include background-svg($calendar-icon);
                 z-index: 100;
+
+                @include media("<tablet"){
+                    right: 6px;
+                }
             }
 
         .duration{
@@ -90,6 +113,10 @@
             .duration-select{
                 height: 33px;
                 @include drop-down-list;
+
+                &:focus{
+                    border: 1px solid color(darkgrey) !important;
+                }
             }
         }
 
@@ -98,19 +125,44 @@
         }
 
     .schedule-transfer-button{
-        width: 220px;
+        position: fixed;
+        z-index: 100;
+        bottom: 20px;
+        right: $grid-margin-width;
+        width: 150px;
+
+        @include media("<tablet"){
+            width: calc(100% - 2* 2.875vw);
+            right: 50%;
+            transform: translate(50%, 0);
+        }
     }
 
     .searched-elements{
         padding: 10px 10px 0 5px;
         width: 100%;
-        height: 69vh;
-        @include scrollbar;
     }
 
         .card{
+            background-color: white;
             width: 100%;
-            padding: 0 30px;
-            height: 62px;
+            padding: 30px 30px;
             @include card;
+
+            span{
+                text-align: center;
+                color: color(blue);
+            }
+
+            @include media("<phone-medium"){
+                flex-direction: column !important;
+                padding: 10px 30px;
+            }
+        }
+
+        .selected-card{
+            background-color: color(blue);
+            span{
+                color: white;
+            }
         }

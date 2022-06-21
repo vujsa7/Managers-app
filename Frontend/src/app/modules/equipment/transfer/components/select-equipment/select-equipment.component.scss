@@ -8,11 +8,19 @@
         height: 33px;
         margin-top: 10px;
         margin-bottom: 10px;
-        width: 50%
+        width: 50%;
+
+        @include media("<tablet-large"){
+            width: 100%;
+        }
     }
 
         .search-field{
             margin-right: 12px;
+
+            &:focus{
+                border: 1px solid darkgrey !important;
+            }
         }
 
 
@@ -39,8 +47,11 @@
         background-color: #fff;
         position: relative;
         overflow: hidden;
-    }
 
+        @include media("<tablet-large"){
+            flex-direction: column !important;
+        }
+    }
 
         .searched-elements{
             display: grid;
@@ -54,6 +65,11 @@
         .searched-elements-active-selected-equipment{
             width: 75%;
             transition: width 0.4s ease;
+            
+            @include media("<tablet-large"){
+                width: 100%;
+                padding-bottom: 286px;
+            }
         }
 
         .selected-equipment{
@@ -65,6 +81,17 @@
             transform: translate(130%, 0);
             width: 23.25%;
             transition: all 0.4s ease;
+
+            @include media("<tablet-large"){
+                position: fixed;
+                bottom: 0;
+                top: unset;
+                right: unset;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                transform: translate(0, 100%);
+            }
         }
 
         .selected-equipment-active{
@@ -72,11 +99,15 @@
         }
 
             .selected-equipment-card{
-                height: 174px;
                 border: none;
                 border-radius: 5px;
                 box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.06);
                 padding: 20px;
+
+                @include media("<tablet-large"){
+                    border-radius: 0px;
+                    padding-bottom: 54px;
+                }
             }
 
                 .title{
@@ -93,12 +124,29 @@
                     margin-bottom: 10px;
                 }
 
-                .room-info{
-                    color: color(darkgrey);
-                    font-size: 14px;
-                    display: inline-block;
-                    margin-bottom: 5px;
+                .room-and-quantity{
+                    @include media("<desktop-medium"){
+                        flex-direction: column !important;
+                        align-items: flex-start !important;
+                    }
                 }
+
+                .room-and-quantity > * {
+                    @include media("<desktop-medium"){
+                        margin-bottom: 5px;
+
+                        &:last-child{
+                            margin-bottom: 10px; 
+                        }
+                    }
+                }
+
+                    .room-info{
+                        color: color(darkgrey);
+                        font-size: 14px;
+                        display: inline-block;
+                        margin-bottom: 5px;
+                    }
 
                 .remove-item{
                     color: color(red);
@@ -121,57 +169,12 @@
                     margin: 0;
                 }
 
-        .select-quick-transfer{
-            position: fixed;
-            bottom: 0px;
-            height: 30px;
-            width: 95%;
-            border-radius: 5px;
-            transition: height 0.4s ease;
-            box-shadow: 0px 0px 15px 0px  #E5E5E5;
-            background-color: #fff;
-            padding: 5px;
-        }
-
-        .selected-quick-transfer-active{
-            display: flex;
-            flex-direction: column;
-            height: 130px;
-            transition: height 0.1s ease-out;
-        }
-
-        .menu-title{
-            display: inline-block;
-            color: color(darkgray);
-        }
-        
-        .quick-transfer-arrow-up-icon{
-            @include background-svg($arrow-up);
-            @include icon; 
-        }
-
-        .quick-transfer-arrow-down-icon{
-            @include background-svg($arrow-down);
-            @include icon; 
-        }
-
-        .sub-menus{
-            display: none !important;
-        }
-
-        .sub-menus-quick-transfer-active{
-            display:  inline-block !important;
-        }
-
-            .quick-item{
-                border-radius: 25px;
-                background: #e9edf2;
-                //color:
-                padding: 5px 10px; 
-                margin-right: 5px;
-                cursor: pointer;
+        .continue-btn{
+            @include media("<tablet-large"){
+                position: absolute;
+                width: calc(100% - 40px);
+                bottom: 8px;
+                left: 50%;
+                transform: translate(-50%, 0);
             }
-
-            .quick-item:hover {
-                background-color: #bdc9d7;
-              }
+        }

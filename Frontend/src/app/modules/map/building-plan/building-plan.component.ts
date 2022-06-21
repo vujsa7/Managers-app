@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { D3Service } from '@app/modules/map/services/d3.service';
+import { GetBuildings } from '@app/state/map/map.actions';
+import { MapState } from '@app/state/map/map.state';
+import { Select, Store } from '@ngxs/store';
+import * as d3 from 'd3';
+import { Observable } from 'rxjs';
+import { Building } from './models/building.model';
 import { BuildingService } from './services/building.service';
 
 @Component({
@@ -10,34 +16,40 @@ import { BuildingService } from './services/building.service';
 })
 export class BuildingPlanComponent implements OnInit {
 
-  mainBuilding = { id: 0, name: '', description: '', points: '2223.5 1051 2223.5 1405 2078.26 1405 2078.26 1462 1939.37 1462 1939.37 1405 1794.13 1405 1794.13 1434 1662.5 1434 1662.5 1022 1794.13 1022 1794.13 1051 2223.5 1051' }
+  mainBuilding!: Building;
+  @Select(MapState.selectBuildings) buildings$!: Observable<Building[]>;
   buildingComponents: any;
   mapBackgroundSvg: any;
   mainBuildingId: string = 'main-building';
 
-  constructor(private buildingsService: BuildingService, private d3Service: D3Service, private router: Router) {}
+  constructor(private store: Store, private buildingService: BuildingService, private d3Service: D3Service, private router: Router) {
+    this.mainBuilding = new Building(0, '', '', '1672.67 1424.36 1804.3 1424.36 1804.3 1453.36 2233.67 1453.36 2233.67 1807.36 2088.43 1807.36 2088.43 1864.36 1949.54 1864.36 1949.54 1807.36 1804.3 1807.36 1804.3 1836.36 1672.67 1836.36 1672.67 1424.36');
+  }
 
   ngOnInit(): void {
     this.mapBackgroundSvg = this.d3Service.selectById("map-background");
     this.drawMainBuilding();
-    this.buildingsService.getBuildings()
-      .subscribe(
-        data => {
-          this.applyBuildingData(this.mainBuilding, data[0]);
-          this.d3Service.addText(this.mapBackgroundSvg, this.mainBuilding.name, { x: 2008, y: 1350 }, 'main-building-name', 'building-' + this.mainBuilding.id);
-          this.d3Service.drawPolygon(this.mapBackgroundSvg, this.mainBuilding, this.mainBuildingId);
-          this.addNavigationToMainBuildingPlan();
-        });
+    this.store.dispatch(new GetBuildings());
+    this.buildings$.subscribe((data) => {
+      if (data.length > 0) {
+        this.applyBuildingData(data[0]);
+        this.d3Service.addText(this.mapBackgroundSvg, this.mainBuilding.name, { x: 2008, y: 1770 }, 'main-building-name', 'building-' + this.mainBuilding.id);
+        d3.selectAll('.main-building-name').style('user-select', 'none');
+        this.d3Service.drawPolygon(this.mapBackgroundSvg, this.mainBuilding, this.mainBuildingId);
+        this.addNavigationToMainBuildingPlan();
+      }
+
+    })
   }
 
-  private applyBuildingData(building: any, data: any) {
-    building.id = data.id;
-    building.name = data.name;
-    building.description = data.description;
+  private applyBuildingData(data: any) {
+    this.mainBuilding.id = data.id;
+    this.mainBuilding.name = data.name;
+    this.mainBuilding.description = data.description;
   }
 
   private drawMainBuilding() {
-    this.buildingComponents = this.buildingsService.getMainBuildingComponents();
+    this.buildingComponents = this.buildingService.getMainBuildingComponents();
     this.d3Service.drawMulticoloredRectangles(this.mapBackgroundSvg, this.buildingComponents, this.mainBuildingId);
   }
 

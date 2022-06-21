@@ -1,33 +1,179 @@
 @import 'src/styles/main.scss';
 
+@import '~@angular/material/theming';
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+    $custom-typography: mat-typography-config(
+    $font-family:   $base-font-family,
+    $display-4:     mat-typography-level(112px, 112px, 300),
+    $display-3:     mat-typography-level(56px, 56px, 400),
+    $display-2:     mat-typography-level(45px, 48px, 400),
+    $display-1:     mat-typography-level(34px, 40px, 400),
+    $headline:      mat-typography-level(24px, 32px, 400),
+    $title:         mat-typography-level(20px, 32px, 500),
+    $subheading-2:  mat-typography-level(16px, 28px, 400),
+    $subheading-1:  mat-typography-level(15px, 24px, 400),
+    $body-2:        mat-typography-level(14px, 24px, 500),
+    $body-1:        mat-typography-level(14px, 20px, 400),
+    $caption:       mat-typography-level(12px, 20px, 400),
+    $button:        mat-typography-level(14px, 14px, 500),
+    $input:         mat-typography-level(inherit, 1.125, 400)
+);
+
+@include mat-base-typography($custom-typography);
+
+// Override typography for a specific Angular Material components.
+@include mat-checkbox-typography($custom-typography);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($custom-typography);
+
+@include mat-core($custom-typography);
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+}
+
 body {
-    font-family: 'Poppins', sans-serif !important;
+  margin: 0;
+  font-family: $base-font-family !important;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5{
+  color: color(blue) !important;
+  font-weight: bold !important;
+  margin: 0 !important;
+}
+
+h1 {
+  font-size: $h1-size !important;
+
+  @include media("<desktop-medium"){
+      font-size: $h2-size !important;
+  }
+
+  @include media("<tablet-large"){
+      font-size: $h3-size !important;
+  }
+
+  @include media("<phone-large"){
+      font-size: $h4-size !important;
+  }
+}
+
+h2 {
+  font-size: $h2-size !important;
+
+  @include media("<desktop-medium"){
+      font-size: $h3-size !important;
+  }
+
+  @include media("<tablet-large"){
+      font-size: $h4-size !important;
+  }
+
+  @include media("<phone-large"){
+      font-size: $h5-size !important;
+  }
+}
+
+h3 {
+  font-size: $h3-size !important;
+
+  @include media("<desktop-medium"){
+      font-size: $h4-size !important;
+  }
+
+  @include media("<tablet-large"){
+      font-size: $h5-size !important;
+  }
+}
+
+h4 {
+  font-size: $h4-size !important;
+
+  @include media("<tablet-large"){
+      font-size: $h5-size !important;
+  }
+}
+
+h5 {
+  font-size: $h5-size !important;
+}
+
+span{
+  font-size: $body-size;
+
+  @include media("<desktop-medium"){
+      font-size: $body-size !important;
+  }
+}
+
+.grey-text{
+  color: color(darkgrey) !important;
+}
+
+.blue-text{
+  color: color(blue) !important;
+}
+
+.lightblue-text{
+  color: color(lightblue) !important;
+}
+
+.red-text{
+  color: color(red) !important;
+}
+
+.green-text{
+  color: color(green) !important;
+}
+
+.white-text{
+  color: white !important;
+}
+
+.page-wrapper{
+  width: 100%;
+  padding: 20px $grid-margin-width 20px $grid-margin-width;
 }
 
 #main-building{
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .form-label{
-    color: color(darkgrey);
-    margin-bottom: 5px;
+  color: color(darkgrey);
+  margin-bottom: 5px;
 }
 
 .form-control:focus{
-    color: color(blue);
-    box-shadow: none !important;
-    border: 2px solid color(darkgrey) !important;
+  color: color(blue);
+  box-shadow: none !important;
+  border: 2px solid color(darkgrey) !important;
 }
 
 .form-check-input:checked{
-    background-color: color(blue) !important;
-    border-color: color(blue);
+  background-color: color(blue) !important;
+  border-color: color(blue);
 }
 
 select {
-    -webkit-appearance: menulist;
-    -moz-appearance: menulist;
-    appearance: menulist;
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
+  appearance: menulist;
 }
 
 /* clears the 'X' from Internet Explorer */
@@ -41,19 +187,22 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 a{
-    text-decoration: none !important;
-    color: color(blue) !important;
+  text-decoration: none !important;
+  color: color(blue) !important;
 
-    &:hover{
-        color: color(blue) !important;
-    }
+  &:hover{
+      color: color(blue) !important;
+  }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: $base-font-family }
 
-h1, h2, h3, h4, h5{
-    font-weight: bold !important;
-    color: color(blue) !important;
+.dialog-container{
+  background-color: white;
+  border-radius: 5px;
+  width: 34.72vw;
+
+  @include media("<tablet-large"){
+    width: 70vw;
+  }
 }
 
 
@@ -113,7 +262,7 @@ ngb-datepicker {
 }
 
 .fc .fc-toolbar-title{
-  font-size: $subhead-size;
+  font-size: $h4-size;
   font-weight: bold;
   color: color(darkgrey);
 }

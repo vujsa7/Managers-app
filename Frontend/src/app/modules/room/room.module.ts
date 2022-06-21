@@ -11,6 +11,8 @@ import { ScheduleCalendarComponent } from './components/schedule-calendar/schedu
 import { RenovationService } from './services/renovation.service';
 import { MapModule } from '../map/map.module';
 import { RenovationTime } from './components/renovation-time/renovation-time.component';
+import { RoomState } from '@app/state/room/room.state';
+import { NgxsModule } from '@ngxs/store';
 
 
 @NgModule({
@@ -26,7 +28,10 @@ import { RenovationTime } from './components/renovation-time/renovation-time.com
     CommonModule,
     RoomRoutingModule,
     SharedModule,
-    MapModule
+    MapModule,
+    [
+      NgxsModule.forFeature([RoomState]),
+    ]
   ],
   providers: [
     RenovationService

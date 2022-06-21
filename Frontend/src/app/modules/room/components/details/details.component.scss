@@ -3,13 +3,46 @@
 
 .back-to-map-btn{
     margin-top: 18px;
-    margin-left: 40px;
+    margin-left: $grid-margin-width;
+    padding: 0 !important;
+
+    &:active{
+        box-shadow: none !important;
+        outline: none !important;
+        border: none !important;
+    }
 }
 
     .back-icon{
         margin-right: 5px;
         @include icon;
         @include background-svg($back-icon);
+    }
+
+h2{
+    margin: 0 !important;
+
+    @include media("<tablet"){
+        margin-bottom: 10px !important;
+    }
+}
+
+    .name-status{
+        @include media("<tablet"){
+            flex-direction: column !important;
+            align-items: flex-start !important;
+        }
+    }
+
+    .grid-margin-width{
+        margin: 0 $grid-margin-width;
+    }
+
+    .description{
+        text-align: justify;
+        @include media("<phone-large"){
+            text-align: start;
+        }
     }
 
 .subhead{
@@ -46,30 +79,30 @@
     border-radius: 5px;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.06);
     margin-bottom: 20px;
-    cursor: pointer;
 
-    &:hover {
-        transition: all 0.3s ease-out;
-        box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
-        top: -3px;
+    @include media("<tablet"){
+        flex-direction: column !important;
     }
+}
 
-    &:before {
-        position: absolute;
-        z-index: -1;
-        top: -16px;
-        right: -16px;
-        height: 32px;
-        width: 32px;
-        transform: scale(2);
-        transform-origin: 50% 50%;
-        transition: all 0.3s ease-out;
+.qty{
+    @include media("<tablet"){
+        width: 100%;
+        flex-direction: row !important;
+        align-self: flex-start;
+        justify-content: space-between !important;
+        span{
+            margin: 10px 5px 0 0;
+        }
     }
+}
 
-    &:hover:before {
-        transform: scale(2.15);
-        transition: all 0.3s ease-out;
-    }
+.nothing-here-placeholder{
+    width: 100%;
+    height: 52vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .backdrop{
@@ -91,96 +124,114 @@
     padding: 0 28px;
 }
 
-.overlay{
-    position: fixed;
-    top: 0;
-    z-index: 101;
-    height: 100%;
-    background-color: rgba(27, 31, 35, 0.42);
-    visibility: visible;
-    opacity: 1;
-    transition: visibility 0.2s ease-in-out, opacity 0.3s ease-in-out;
+.navbar-menu{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    @include background-svg($navbar-menu);
+    @include icon;
+
+    @include media(">=desktop-medium"){
+        display: none !important;
+    }
 }
 
-    .hidden-overlay{
-        visibility: hidden;
-        opacity: 0;
+.overlay{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(34, 34, 34, 0.5);
+    transition: all 300ms ease-in;
+}
+
+.overlay.overlay-visible{
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.nav-items-menu{
+    position: fixed;
+    height: 100vh;
+    z-index: 1001;
+    padding: 80px 60px 0 60px;
+    right: 0;
+    top: 0;
+    background-color: white;
+    transform: scale(0, 1);
+    transform-origin: right;
+    transition: all 0.2s ease-in-out;
+
+    // @include media(">=desktop-medium"){
+    //     transform: scale(1, 1);
+    // }
+
+    @include media("<phone-medium"){
+        width: 80vw;
+    }
+}
+
+.nav-items-menu.nav-items-menu-visible{
+    transform: scale(1, 1);
+}
+
+    .close-icon{
+        @include background-svg($close);
+        @include icon;
+        position: absolute;
+        top: 76px;
+        right: 40px;
+        display: flex;
+        align-self: end;
     }
 
-    .menu-container{
-        background-color: white;
-        position: relative;
-        animation: expand-width 0.3s ease-in-out forwards;
+    .menu-title{
+        display: inline-block;
+        margin-top: 76px;
+        color: color(darkgray);
+
     }
 
-    @keyframes expand-width {
-        0% {
-            width: 0%;
+        .nav-item-menu{
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: color(blue);
+            font-weight: bold;
+            cursor: pointer;
         }
-        100% {
-            width: 26%;
-        }
-    }
 
-        .close-icon{
-            @include background-svg($close);
+        .edit-room-info-icon{
+            @include background-svg($edit-room-info);
             @include icon;
-            position: absolute;
-            top: 76px;
-            right: 40px;
-            display: flex;
-            align-self: end;
         }
 
-        .menu-title{
-            display: inline-block;
-            margin-top: 76px;
-            color: color(darkgray);
-
+        .make-transfer-icon{
+            @include background-svg($make-transfer);
+            @include icon; 
         }
 
-        .nav-items-menu{
-            display: flex;
-            flex-direction: column;
-            margin-top: 30px;
+        .renovate-room-icon{
+            @include background-svg($renovate-room);
+            @include icon;
         }
 
-            .nav-item-menu{
-                margin-bottom: 20px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                color: color(blue);
-                font-weight: bold;
-                cursor: pointer;
-            }
+        .room-schedule-icon{
+            @include background-svg($room-schedule);
+            @include icon;
+        }
 
-            .edit-room-info-icon{
-                @include background-svg($edit-room-info);
-                @include icon;
-            }
+        .manage-doctor-icon{
+            @include background-svg($manage-doctor);
+            @include icon;
+        }
 
-            .make-transfer-icon{
-                @include background-svg($make-transfer);
-                @include icon; 
-            }
-
-            .renovate-room-icon{
-                @include background-svg($renovate-room);
-                @include icon;
-            }
-
-            .room-schedule-icon{
-                @include background-svg($room-schedule);
-                @include icon;
-            }
-
-            .manage-doctor-icon{
-                @include background-svg($manage-doctor);
-                @include icon;
-            }
-
-            .doctor-workload-icon{
-                @include background-svg($doctor-workload);
-                @include icon;
-            }
+        .doctor-workload-icon{
+            @include background-svg($doctor-workload);
+            @include icon;
+        }

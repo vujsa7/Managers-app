@@ -8,9 +8,10 @@
     width: 100%;
     font-size: 14px;
     font-weight: bold;
+    transition: 0.2s all ease-in;
+
+    &:hover{
+        filter: brightness(0.8);
+    }
 }
 
-.btn-primary:hover{
-    background-color: color(darkblue);
-    box-shadow: none;
-}

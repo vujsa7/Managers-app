@@ -1,7 +1,6 @@
 <div class="d-flex flex-column destination-room-overview">
     <div class="search-container d-flex flex-row">
-        <input type="search" (keyup.enter)="search()" class="form-control search-field" [(ngModel)]="searchInput"
-            id="searchInput" placeholder="Search">
+        <input type="search" (keyup.enter)="search()" class="form-control search-field" [(ngModel)]="searchInput" id="searchInput">
         <app-primary-button (click)="search()" [text]="'Search'"></app-primary-button>
     </div>
     <div class="subtitle-equipment-transfer d-flex flex-row justify-content-between">

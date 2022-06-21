@@ -1,10 +1,11 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+// localhost = https://localhost:44342/api/
 
 export const environment = {
   production: false,
-  baseUrlHospital: 'https://localhost:44342/api/',
+  baseUrlHospital: 'http://localhost:1039/api/',
   baseUrlIntegration: 'http://localhost:44298/',
   baseUrlPharmacy: 'http://localhost:64677/',
 };

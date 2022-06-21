@@ -13,6 +13,8 @@ import { BuildingNamePipe } from "./pipes/building-name.pipe";
 import { RoomFloorPipe } from "./pipes/room-floor.pipe";
 import { RoomStatusToStringPipe } from "./pipes/room-status-to-string.pipe";
 import { RoomTypeToStringPipe } from "./pipes/room-type-to-string.pipe";
+import { FloorPipe } from './pipes/floor.pipe';
+import { MaterialModule } from "./material/material.module";
 
 @NgModule({
     declarations: [
@@ -24,6 +26,7 @@ import { RoomTypeToStringPipe } from "./pipes/room-type-to-string.pipe";
         RoomTypeToStringPipe,
         RoomFloorPipe,
         BuildingNamePipe,
+        FloorPipe,
     ],
     imports: [
         CommonModule,
@@ -34,6 +37,7 @@ import { RoomTypeToStringPipe } from "./pipes/room-type-to-string.pipe";
         NgxSpinnerModule,
         NgbTimepickerModule,
         NgChartsModule,
+        MaterialModule
     ],
     exports: [
         // My shared components
@@ -47,6 +51,7 @@ import { RoomTypeToStringPipe } from "./pipes/room-type-to-string.pipe";
         RoomTypeToStringPipe,
         RoomFloorPipe,
         BuildingNamePipe,
+        FloorPipe,
 
         // Imported modules from packages
         FormsModule,
@@ -56,6 +61,9 @@ import { RoomTypeToStringPipe } from "./pipes/room-type-to-string.pipe";
         NgxSpinnerModule,
         NgbTimepickerModule,
         NgChartsModule,
+
+        // Material module
+        MaterialModule
     ]
 })
 

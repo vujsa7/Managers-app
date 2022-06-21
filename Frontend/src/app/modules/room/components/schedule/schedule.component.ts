@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
 import { RoomType } from '@app/shared/models/room-type.enum';
 import { RoomTypeToStringPipe } from '@app/shared/pipes/room-type-to-string.pipe';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -9,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ScheduleService } from '../../services/schedule.service';
 import { RoomBasicInfo } from '@app/shared/models/room-basic-info.model';
 import { RoomDetailsService } from '../../services/room-details.service';
+import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
 
 @Component({
   selector: 'room-schedule',

@@ -1,24 +1,31 @@
 <div class="vh-100 d-flex flex-column" id="floor-plan">
     <map-floor-plan-svg></map-floor-plan-svg>
-    <div class="floor-and-button-wrapper d-flex flex-column">
-        <div class="floor-container d-flex flex-column justify-content-center align-items-center">
-            <span class="title fw-bold mt-3 mb-2">Select floor</span>
-            <form>
-                <div *ngIf="floors">
-                    <div *ngFor="let floor of floors">
-                        <div class="d-flex flex-row mb-2">
-                            <input class="radio-btn form-check-input me-2" name="name-{{'floor' + floor}}" value="{{floor}}" [checked]="selectedFloor == floor" (change)="selectedFloorChanged(floor)" type="radio" id="{{'floor' + floor}}">
-                            <label class="radio-btn form-check-label" for="{{'floor' + floor}}">
-                               <span *ngIf="floor > 0">Floor {{floor}}</span>
-                               <span *ngIf="floor == 0">Ground level</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3"></div>
-            </form>
-        </div> 
-        <app-primary-button routerLink="/map/building-plan" text="Map view" color="#66A182"></app-primary-button>
+    <div class="floor-and-button-wrapper">
+        <div class="floor-wrapper d-flex flex-column align-items-center justify-content-center" *ngIf="floors">
+            <div *ngFor="let floor of floors" id="{{'floor' + floor}}" (click)="selectedFloorChanged(floor)"
+                class="floor-box" [ngClass]="{'floor-box-selected': selectedFloor == floor}">
+                <span>{{floor | floor}}</span>
+            </div>
+            <hr>
+            <div *ngIf="mode=='equipment'" routerLink="/equipment/transfer" class="d-flex flex-row mode-box secondary-btn active">
+                <span>Make transfer</span>
+            </div>
+            <div *ngIf="mode=='rooms'" [routerLink]="selectedRoomId && selectedRoomId!=-1 ? ['/rooms/details/', selectedRoomId] : []" class="d-flex flex-row mode-box secondary-btn" [ngClass]="{'active': selectedRoomId && selectedRoomId!=-1}">
+                <span>Room details</span>
+            </div>
+        </div>
     </div>
-    <app-side-bar *ngIf="rooms" [rooms]="rooms" [equipment]="equipment" [selectedFloor]="selectedFloor" [isRoomSelected]="isRoomSelected" [selectedRoomId]="selectedRoomId" (notifyDisplayRoom)="onNotifyDisplayRoom($event)" class="room-info-outer-container d-flex flex-column"></app-side-bar>
+    <div class="select-floor" *ngIf="floors">
+        <mat-form-field appearance="fill">
+            <mat-label>Select floor</mat-label>
+            <mat-select ([value])="selectedFloor">
+                <mat-option value="floor" *ngFor="let floor of floors" (click)="selectedFloorChanged(floor)">{{floor | floor}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="back-to-map d-flex align-items-center" routerLink="/map/building-plan">
+        <svg class="back-btn me-2"></svg>
+        <span class="fw-bold white-text">Building plan</span>
+    </div>
+    <app-side-bar *ngIf="rooms" [selectedFloor]="selectedFloor" (modeChanged)="onModeChanged($event)"></app-side-bar>
 </div>

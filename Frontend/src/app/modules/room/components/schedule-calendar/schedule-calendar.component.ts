@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { CalendarEvent } from '@app/shared/models/calendar-event.model';
-import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
+import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
 import { RoomType } from '@app/shared/models/room-type.enum';
 import { RoomTypeToStringPipe } from '@app/shared/pipes/room-type-to-string.pipe';
 import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';

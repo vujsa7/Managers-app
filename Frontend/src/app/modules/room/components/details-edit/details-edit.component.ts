@@ -1,6 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RoomStatus } from '@app/shared/models/room-status.enum';
 import { RoomType } from '@app/shared/models/room-type.enum';
+import { UpdateRoom } from '@app/state/room/room.actions';
+import { Store } from '@ngxs/store';
+import { RoomWithEquipment } from '../../models/room-with-equipment.model';
 import { RoomDetailsService } from '../../services/room-details.service';
 
 @Component({
@@ -10,7 +14,7 @@ import { RoomDetailsService } from '../../services/room-details.service';
 })
 export class DetailsEditComponent {
 
-  @Input() selectedRoom: any;
+  @Input() room!: RoomWithEquipment;
   roomStatuses: RoomStatus[] = [
     RoomStatus.Occupied,
     RoomStatus.Unoccupied,
@@ -28,16 +32,22 @@ export class DetailsEditComponent {
     RoomType.Stairs,
     RoomType.Storage
   ]
-  constructor(private roomDetailsService: RoomDetailsService) { }
+
+  @Output() okay = new EventEmitter<any>();
+
+  constructor(private store: Store, private dialogRef: MatDialogRef<DetailsEditComponent>, @Inject(MAT_DIALOG_DATA) data: any) {
+    this.room = data.room;
+  }
+
 
   @Output() notifyHideRoomInfo: EventEmitter<any> = new EventEmitter<any>();
 
   hideRoomInfoForm(){
-    this.notifyHideRoomInfo.emit();
+    this.dialogRef.close();
   }
 
   updateRoomInfo(): void{
-    this.roomDetailsService.updateRoom(this.selectedRoom).subscribe();
+    this.store.dispatch(new UpdateRoom(this.room));
     this.hideRoomInfoForm();
   }
 

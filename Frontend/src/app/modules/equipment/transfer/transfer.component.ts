@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { EquipmentTransfer } from '@app/modules/equipment/transfer/models/equipment-transfer.model';
+import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
 
 import { DestinationRoomComponent } from './components/destination-room/destination-room.component';
 

@@ -5,7 +5,13 @@ import { RoomType } from '@app/shared/models/room-type.enum';
 import { RoomTypeToStringPipe } from '@app/shared/pipes/room-type-to-string.pipe';
 import { FloorEquipment } from './models/floor-equipment.model';
 import { FloorRoom } from './models/floor-room.model';
-import { FloorPlanService } from './services/floor-plan.service';
+import { Select, Store } from '@ngxs/store';
+import { MapState } from '@app/state/map/map.state';
+import { Observable } from 'rxjs';
+import { GetFloorEquipment, GetFloorRooms } from '@app/state/map/map.actions';
+import { FloorPlanState } from './state/floor-plan.state';
+import { UpdateSelectedRoomId } from './state/floor-plan.actions';
+
 
 @Component({
   selector: 'app-floor-plan',
@@ -14,42 +20,47 @@ import { FloorPlanService } from './services/floor-plan.service';
 })
 export class FloorPlanComponent implements OnInit {
 
-  buildingId: number = 0;
   svg: any;
   rooms: FloorRoom[] = [];
+  @Select(MapState.selectFloorRooms) rooms$!: Observable<FloorRoom[]>;
   equipment: FloorEquipment[] = [];
+  @Select(MapState.selectFloorEquipment) equipment$!: Observable<FloorEquipment[]>;
   selectedFloor: number = 0;
-  selectedRoomId: number = -1;
-  isRoomSelected: boolean = false;
+  @Select(FloorPlanState.selectSelectedRoomId) selectedRoomId$!: Observable<number>;
+  selectedRoomId!: number;
   floors: number[] = [];
+  mode!: string;
 
-  constructor(private d3Service: D3Service, private floorPlanService: FloorPlanService, private route: ActivatedRoute) {}
+  constructor(private store: Store, private d3Service: D3Service, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.buildingId = params['buildingId'];
-      this.floorPlanService.getFloorRoomsInBuilding(this.buildingId).subscribe(
-        data => {
-          this.rooms = data;
-          this.drawRooms();
-          this.countNumberOfFloors(this.rooms);
-        }
-      );
+    // Subscribing to any room changes if they occur
+    this.rooms$.subscribe((data) => {
+      if(data.length > 0){
+        this.rooms = data;
+        this.drawRooms();
+        this.countNumberOfFloors(this.rooms);
+      }
     });
 
-    this.floorPlanService.getEquipmentInBuilding().subscribe(
-      data => {
-        this.equipment = data;
+    this.selectedRoomId$.subscribe(roomId => {
+      if(roomId != -1){
+        this.selectedFloor = this.rooms.find(x => x.id == roomId)!.floor;
+        this.selectedFloorChanged(this.selectedFloor);
+        this.selectedRoomId = roomId;
+        this.highlightRoom();
       }
-    )
-  }
+    })
 
-  onNotifyDisplayRoom(roomId: number) {
-    this.selectedFloor = this.rooms.find(x => x.id == roomId)!.floor;
-    this.selectedFloorChanged(this.selectedFloor);
-    this.isRoomSelected = true;
-    this.selectedRoomId = roomId;
-    this.highlightRoom();
+    this.equipment$.subscribe((data) => {
+      if(data.length > 0)
+        this.equipment = data;
+    })
+    
+    this.route.queryParams.subscribe(params => {
+      // Dispatching action to fetch floor rooms
+      this.store.dispatch([new GetFloorRooms(parseInt(params['buildingId'])), new GetFloorEquipment()]);
+    });    
   }
 
   private drawRooms() {
@@ -73,11 +84,10 @@ export class FloorPlanComponent implements OnInit {
   private addClickEventToRooms() {
     for (const room of this.rooms) {
       let roomComponent = this.d3Service.selectById('room-' + room.id);
-      let component = this;
+      let self = this;
       roomComponent.on('click', function (d: any, i: any) {
-        component.selectedRoomId = room.id;
-        component.isRoomSelected = true;
-        component.highlightRoom();
+        self.store.dispatch(new UpdateSelectedRoomId(room.id));
+        self.highlightRoom();
       })
       roomComponent.on("mouseover", () => {
         if (this.selectedRoomId != room.id)
@@ -100,10 +110,14 @@ export class FloorPlanComponent implements OnInit {
   selectedFloorChanged(selectedFloor: number): void {
     this.selectedFloor = selectedFloor;
     this.selectedRoomId = -1;
-    this.isRoomSelected = false;
     this.unhighlightRooms();
     this.filterRooms();
+  }
 
+  onFloorChanged(){
+    this.selectedRoomId = -1;
+    this.unhighlightRooms();
+    this.filterRooms();
   }
 
   drawRoomNames(): void {
@@ -121,13 +135,13 @@ export class FloorPlanComponent implements OnInit {
         })
         .on("click", () => {
           this.selectedRoomId = room.id;
-          this.isRoomSelected = true;
           this.highlightRoom();
         })
         .style("cursor", "pointer");
     }
     this.svg.selectAll('text')
-      .style('font-size', '14px')
+      .style('font-size', '16px')
+      .style('text-align', 'center')
   }
 
   highlightRoom(): void {
@@ -143,5 +157,9 @@ export class FloorPlanComponent implements OnInit {
       .style('fill', '#cccccc');
     this.svg.selectAll('text')
       .style('fill', '#214975');
+  }
+
+  onModeChanged(data: any){
+    this.mode = data;
   }
 }

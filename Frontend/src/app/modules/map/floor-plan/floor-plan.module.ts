@@ -9,6 +9,9 @@ import { ScrollBoxComponent } from './components/scroll-box/scroll-box.component
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { EquipmentCardComponent } from './components/equipment-card/equipment-card.component';
 import { FloorPlanService } from './services/floor-plan.service';
+import { RoomTypeToStringPipe } from '@app/shared/pipes/room-type-to-string.pipe';
+import { NgxsModule } from '@ngxs/store';
+import { FloorPlanState } from './state/floor-plan.state';
 
 
 @NgModule({
@@ -17,15 +20,20 @@ import { FloorPlanService } from './services/floor-plan.service';
     FloorPlanSvgComponent,
     ScrollBoxComponent,
     SideBarComponent,
-    EquipmentCardComponent
+    EquipmentCardComponent,
+    
   ],
   imports: [
     CommonModule,
     FloorPlanRoutingModule,
-    SharedModule
+    SharedModule,
+    [
+      NgxsModule.forFeature([FloorPlanState]),
+    ]
   ],
   providers: [
-    FloorPlanService
+    FloorPlanService,
+    RoomTypeToStringPipe
   ]
 })
 export class FloorPlanModule { }

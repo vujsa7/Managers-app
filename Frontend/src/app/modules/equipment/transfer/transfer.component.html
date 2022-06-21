@@ -1,9 +1,9 @@
 <div class="d-flex flex-column" id="move-equipment">
     <div class="header-equipment-transfer d-flex flex-row justify-content-between">
         <div class="back-to-map d-flex flex-row">
-            <div class="back-to-map-btn" routerLink="/map/building-plan">
+            <div class="back-to-map-btn" routerLink="/map/floor-plan" [queryParams]="{buildingId: 1}">
                 <svg class="back-icon"></svg>
-                <span class="align-middle ms-1">Map view</span>
+                <span class="align-middle ms-1">Floor plan</span>
             </div>
         </div>
         <tr-steps [completedSteps]="completedSteps" [mode]="mode" (modeChanged)="onModeChanged($event)"></tr-steps>

@@ -5,7 +5,6 @@
             <svg class="dot" height="15" width="15"><circle cx="7.5" cy="7.5" r="6" attr.fill="{{roomStatusColor()}}" /></svg>
             <span class="status-text" [style.color]="roomStatusColor()">{{room.status | roomStatusToString}}</span>
         </div>
-        <span [style.color]="isCardSelected ? '#fff' : '#a2a2a2'" *ngIf="room.floor == 0" class="floor-text">Ground level</span>
-        <span [style.color]="isCardSelected ? '#fff' : '#a2a2a2'" *ngIf="room.floor > 0" class="floor-text">Floor {{room.floor}}</span>
+        <span [style.color]="isCardSelected ? '#fff' : '#a2a2a2'" class="floor-text">{{room.floor | floor}}</span>
     </div>
 </div>

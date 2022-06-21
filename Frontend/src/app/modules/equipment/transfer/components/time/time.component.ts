@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EquipmentTransfer } from '@app/shared/models/equipment-transfer.model';
 import { NgbCalendar, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-import { EquipmentTransfer } from '../../models/equipment-transfer.model';
 import { EquipmentTransferService } from '../../services/equipment-transfer.service';
 
 @Component({
